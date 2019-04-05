@@ -1,0 +1,36 @@
+#!/bin/bash
+
+#uninstall script for pat menu 
+#km4ack 20190405
+
+clear
+echo;echo;echo
+echo "This will uninstall all files for the Pat Menu"
+echo "System. This WILL NOT uninstall piardopc or"
+echo "piARDOP_GUI since both of these are used"
+echo "with Pat Winlink. This will also NOT uninstall"
+echo "Pat winlink"
+echo
+echo "Continue? y/n"
+read ANSWER
+
+if [ $ANSWER == "y" ]
+then
+rm $HOME/ardop/findardop
+rm $HOME/ardop/getardoplist
+rm $HOME/ardop/grid-map.pdf
+rm $HOME/ardop/worldgridmap.pdf
+rm $HOME/ardop/patlogin
+rm $HOME/ardop/patmenu
+rm $HOME/ardop/start-pat
+rm $HOME/ardop/stop-pat
+rm -rf $HOME/Documents/ardop-list
+rm $HOME/ardop/uninstall
+else
+exit
+fi
+
+echo;echo;echo
+echo "Uninstall complete"
+echo "Thanks for trying the Pat Menu System"
+echo "73, KM4ACK"
