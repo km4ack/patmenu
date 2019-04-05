@@ -89,6 +89,8 @@ sudo chmod +x getardoplist
 wget https://github.com/km4ack/Pat-Menu/raw/master/grid-map.pdf
 #create symlink for menu
 sudo ln -sf $HOME/ardop/patmenu /usr/local/bin/patmenu
+#get world grid map
+wget https://github.com/km4ack/Pat-Menu/raw/master/worldgridmap.pdf
 
 if [ -f $HOME/Documents/ardop-list/ardoplist.txt ]
 then
