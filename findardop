@@ -259,7 +259,7 @@ if [[ -z "$name" ]]; then
 else
 	if [ $name == 'Change-Grid' ]
 	then
-	read -p 'Enter the grid to be searched: ' lett
+	read -p 'Enter the first two letter of the grid to be searched: ' lett
 	clear
 	if [[ -z "$lett" ]]; then
         echo
