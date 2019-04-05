@@ -4,7 +4,8 @@
 #and the km4ack pat menu system
 #km4ack 20190404
 
-PAT=$(dpkg --get-selections | grep -w "pat")
+#get current working dir.
+CURRENTPATH=$(pwd)
 
 if [ -f $HOME/ardop/patmenu ]
 then
@@ -18,7 +19,7 @@ rm $HOME/ardop/patmenu
 rm $HOME/ardop/patlogin
 fi
 
-
+PAT=$(dpkg --get-selections | grep -w "pat")
 #check if pat is install & offer to install if needed
 if [ -z "$PAT" ]
 then
@@ -125,6 +126,8 @@ echo "[General]" >> $HOME/.config/G8BPQ/ARDOP_GUI.conf
 echo "Host=local" >> $HOME/.config/G8BPQ/ARDOP_GUI.conf
 echo "Port=8515" >> $HOME/.config/G8BPQ/ARDOP_GUI.conf
 fi
+
+rm $CURRENTPATH/patsetup
 
 echo;echo;echo;echo
 echo "#############################################################"
