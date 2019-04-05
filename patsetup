@@ -131,6 +131,16 @@ echo "Host=local" >> $HOME/.config/G8BPQ/ARDOP_GUI.conf
 echo "Port=8515" >> $HOME/.config/G8BPQ/ARDOP_GUI.conf
 fi
 
+#give user option to change to world map
+echo;echo;echo;
+echo "Would you like to use a world grid square map"
+echo "instead of the default USA grid square map? y/n"
+read MAP
+if [ $MAP == "y" ]
+then
+sed -i s'/grid-map.pdf/worldgridmap.pdf/' $HOME/ardop/findardop
+fi
+
 rm $CURRENTPATH/patsetup
 
 echo;echo;echo;echo
