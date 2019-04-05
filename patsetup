@@ -67,25 +67,25 @@ fi
 
 cd $HOME/ardop
 #get pat menu & make exec
-wget https://raw.githubusercontent.com/km4ack/pi-scripts/master/pat/patmenu
+wget https://raw.githubusercontent.com/km4ack/Pat-Menu/master/patmenu
 sudo chmod +x patmenu
 #get pat login script & make exec
-wget https://raw.githubusercontent.com/km4ack/pi-scripts/master/pat/patlogin
+wget https://raw.githubusercontent.com/km4ack/Pat-Menu/master/patlogin
 sudo chmod +x patlogin
 #get start-pat script & make exec
-wget https://raw.githubusercontent.com/km4ack/pi-scripts/master/pat/start-pat
+wget https://raw.githubusercontent.com/km4ack/Pat-Menu/master/start-pat
 sudo chmod +x start-pat
 #get stop-pat script & make exec
-wget https://raw.githubusercontent.com/km4ack/pi-scripts/master/pat/stop-pat
+wget https://raw.githubusercontent.com/km4ack/Pat-Menu/master/stop-pat
 sudo chmod +x stop-pat
 #get find ardop & make exec
-wget https://raw.githubusercontent.com/km4ack/pi-scripts/master/ardop/findardop
+wget https://raw.githubusercontent.com/km4ack/Pat-Menu/master/findardop
 sudo chmod +x findardop
 #get getardoplist & make exec
-wget https://raw.githubusercontent.com/km4ack/pi-scripts/master/ardop/getardoplist
+wget https://raw.githubusercontent.com/km4ack/Pat-Menu/master/getardoplist
 sudo chmod +x getardoplist
 #get gridmap
-wget https://github.com/km4ack/pi-scripts/raw/master/ardop/grid-map.pdf
+wget https://github.com/km4ack/Pat-Menu/raw/master/grid-map.pdf
 #create symlink for menu
 sudo ln -sf $HOME/ardop/patmenu /usr/local/bin/patmenu
 
