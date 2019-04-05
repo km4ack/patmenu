@@ -8,19 +8,19 @@ This is still considered ALPHA code. Things may or may not work for you. It has 
 
 move to your download directory
 
-cd ~/Downloads
+    cd ~/Downloads
 
 download the patsetup file
 
-wget https://raw.githubusercontent.com/km4ack/Pat-Menu/master/patsetup
+    wget https://raw.githubusercontent.com/km4ack/Pat-Menu/master/patsetup
 
 make setup file exec
 
-sudo chmod +x patsetup
+    sudo chmod +x patsetup
 
 run the setup file
 
-./patsetup
+    ./patsetup
 
 Once setup is finished, start the menu with
 
