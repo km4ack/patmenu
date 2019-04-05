@@ -91,6 +91,8 @@ wget https://github.com/km4ack/Pat-Menu/raw/master/grid-map.pdf
 sudo ln -sf $HOME/ardop/patmenu /usr/local/bin/patmenu
 #get world grid map
 wget https://github.com/km4ack/Pat-Menu/raw/master/worldgridmap.pdf
+#get uninstall script
+wget https://raw.githubusercontent.com/km4ack/Pat-Menu/master/uninstall
 
 if [ -f $HOME/Documents/ardop-list/ardoplist.txt ]
 then
