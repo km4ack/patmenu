@@ -4,8 +4,6 @@
 #and the km4ack pat menu system
 #km4ack 20190404
 
-#get current working dir.
-CURRENTPATH=$(pwd)
 
 if [ -f $HOME/ardop/patmenu ]
 then
@@ -143,7 +141,7 @@ then
 sed -i s'/grid-map.pdf/worldgridmap.pdf/' $HOME/ardop/findardop
 fi
 
-rm $CURRENTPATH/patsetup
+rm $HOME/Downloads/patsetup
 
 echo;echo;echo;echo
 echo "#############################################################"
