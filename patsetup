@@ -17,6 +17,8 @@ rm $HOME/ardop/getardoplist
 rm $HOME/ardop/grid-map.pdf
 rm $HOME/ardop/patmenu
 rm $HOME/ardop/patlogin
+rm $HOME/ardop/worldgridmap.pdf
+rm $HOME/ardop/uninstall
 fi
 
 PAT=$(dpkg --get-selections | grep -w "pat")
