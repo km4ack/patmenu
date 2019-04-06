@@ -78,37 +78,23 @@ echo "piARDOP_GUI was found on this system"
 fi
 
 #get km4ack scripts & menu system
-#list of files:
-#patmenu,patlogin,start-pat,stop-pat,find-ardop,getardoplist,grid-map.pdf
 
-cd $HOME/ardop
-#get pat menu & make exec
-wget https://raw.githubusercontent.com/km4ack/Pat-Menu/master/patmenu
-sudo chmod +x patmenu
-#get pat login script & make exec
-wget https://raw.githubusercontent.com/km4ack/Pat-Menu/master/patlogin
-sudo chmod +x patlogin
-#get start-pat script & make exec
-wget https://raw.githubusercontent.com/km4ack/Pat-Menu/master/start-pat
-sudo chmod +x start-pat
-#get stop-pat script & make exec
-wget https://raw.githubusercontent.com/km4ack/Pat-Menu/master/stop-pat
-sudo chmod +x stop-pat
-#get find ardop & make exec
-wget https://raw.githubusercontent.com/km4ack/Pat-Menu/master/findardop
-sudo chmod +x findardop
-#get getardoplist & make exec
-wget https://raw.githubusercontent.com/km4ack/Pat-Menu/master/getardoplist
-sudo chmod +x getardoplist
-#get gridmap
-wget https://github.com/km4ack/Pat-Menu/raw/master/grid-map.pdf
-#create symlink for menu
-sudo ln -sf $HOME/ardop/patmenu /usr/local/bin/patmenu
-#get world grid map
-wget https://github.com/km4ack/Pat-Menu/raw/master/worldgridmap.pdf
-#get uninstall script & make exec
-wget https://raw.githubusercontent.com/km4ack/Pat-Menu/master/uninstall
-sudo chmod +x uninstall
+#make dir if doesn't exist
+mkdir -p $HOME/Downloads
+cd $HOME/Downloads
+#clone pat menu from github
+git clone https://github.com/km4ack/Pat-Menu.git
+cd Pat-Menu
+#make files exec
+sudo chmod +x start-pat stop-pat patmenu findardop getardoplist patlogin patsetup uninstall
+#make dir if doesn't exist
+mkdir -p $HOME/ardop
+#move files to where they go
+cp $HOME/Downloads/Pat-Menu/* $HOME/ardop/
+#remove download dir
+rm -rf $HOME/Downloads/Pat-Menu
+
+#check to see if ardop list exist. get if needed.
 if [ -f $HOME/Documents/ardop-list/ardoplist.txt ]
 then
     echo "ARDOP list exist. No need to download"
