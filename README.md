@@ -4,6 +4,9 @@ It will also aid in finding ARDOP stations to connect to and shut down Pat and r
 
 This is still considered ALPHA code. Things may or may not work for you. It has only been tested with the signalink and wolphilink sound card but should work with any USB sound card that uses VOX to trigger the radio.
 
+# Issues
+Please report any bugs/issues with the menu https://github.com/km4ack/Pat-Menu/issues
+
 # Install
     wget https://git.io/fjLPg -O $HOME/Downloads/patsetup && bash $HOME/Downloads/patsetup
 
