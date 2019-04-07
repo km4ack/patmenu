@@ -9,4 +9,4 @@ This is still considered ALPHA code. Things may or may not work for you. It has 
 
 Once setup is finished, start the menu with
 
-patmenu
+    patmenu
