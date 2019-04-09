@@ -94,6 +94,11 @@ cp $HOME/Downloads/Pat-Menu/* $HOME/ardop/
 #remove download dir
 rm -rf $HOME/Downloads/Pat-Menu
 
+#attempt to start pat. this will fail but will create the need
+#blank config file to be modified in the next section of the script
+pat http
+sleep 2
+
 #Set Callsign,Winlink Password & locator in Pat Config File
 FIG=$HOME/.wl2k/config.json
 
