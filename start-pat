@@ -17,12 +17,13 @@
 #-----------------END NOTES------------------------#
 ####################################################
 
+#set sound card number
+#User may need to change this is sound card is different
+#find with 'arecord -l' at commnad line
+CARD=1,0
+
 #path to ardop
 APATH=$HOME/ardop
-#get usb card number for sound card
-#won't work with multiple sound cards plugged in.
-#will need to mod if using multiple sound cards.
-CARD=$(arecord -l | grep "USB Audio" | awk '{print $2$8}' | sed 's/:/,/;s/://')
 
 #stop programs that might interfere with pat running
 sudo killall piardopc
