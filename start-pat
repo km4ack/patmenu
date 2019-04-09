@@ -12,6 +12,7 @@
 #20181216 original script written
 #20190226 added open chrome browser to display inbox
 #20190404 added variable for PORT
+#20190408 comment out open chrome and remove & after pat http
 ####################################################
 #-----------------END NOTES------------------------#
 ####################################################
@@ -38,7 +39,7 @@ export DISPLAY=:0 && $APATH/piARDOP_GUI &
 sleep 2
 
 #start pat
-pat http &
+pat http
 
 sleep 1
 
@@ -46,4 +47,4 @@ sleep 1
 PORT=$(grep -w "http_addr" $HOME/.wl2k/config.json | sed 's/.*: //;s/.*://;s/",//')
 
 #open inbox in chrome browser window
-export DISPLAY=:0 && chromium-browser --app=http://127.0.0.1:$PORT
+#export DISPLAY=:0 && chromium-browser --app=http://127.0.0.1:$PORT
