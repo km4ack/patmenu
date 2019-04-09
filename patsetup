@@ -146,6 +146,7 @@ fi
 rm $HOME/Downloads/patsetup
 
 #create symlink for patmenu
+sudo touch /usr/local/bin/patmenu
 sudo ls -sf $HOME/ardop/patmenu /usr/local/bin/patmenu
 
 echo;echo;echo;echo
