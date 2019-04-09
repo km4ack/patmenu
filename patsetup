@@ -127,6 +127,7 @@ if [ -f $HOME/.config/G8BPQ/ARDOP_GUI.conf ]
 then
     echo "ARDOP_GUI Config exists"
 else
+mkdir -p $HOME/.config/G8BPQ
 echo "[General]" >> $HOME/.config/G8BPQ/ARDOP_GUI.conf
 echo "Host=local" >> $HOME/.config/G8BPQ/ARDOP_GUI.conf
 echo "Port=8515" >> $HOME/.config/G8BPQ/ARDOP_GUI.conf
