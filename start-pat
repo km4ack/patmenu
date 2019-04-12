@@ -20,6 +20,7 @@
 #set sound card number
 #User may need to change this is sound card is different
 #find with 'arecord -l' at commnad line
+#more info - https://youtu.be/w0dy42TLd_o
 CARD=1,0
 
 #path to ardop
