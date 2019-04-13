@@ -179,8 +179,7 @@ EV=$(dpkg --get-selections | grep -w "evince")
 if [ -z "$EV" ]
 then
 #install evince pdf reader
-echo "Evince install commented out during test"
-#sudo apt-get install -y evince
+sudo apt-get install -y evince
 fi
 
 #create config file for ARDOP_GUI
