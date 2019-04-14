@@ -41,7 +41,7 @@ export DISPLAY=:0 && $APATH/piARDOP_GUI &
 sleep 2
 
 #start pat
-pat http
+pat http &
 
 sleep 1
 
