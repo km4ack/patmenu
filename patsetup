@@ -8,17 +8,9 @@ clear
 echo;echo;echo;
 
 #check if patmenu already installed
+#and remove old files if installed.
 if [ -f $HOME/ardop/patmenu ]
-then
-echo "It looks like you have a version of Pat Menu"
-echo "already installed. If you continue, the current"
-echo "version will be deleted and the latest version"
-echo "will be installed. Continue? y/n"
-read REMOVEOLD
-        if [ $REMOVEOLD == "y" ]
-        then
-        #remove old menu files so we get latest revisions
-	#don't remove entire dir in case user has added files
+
         rm $HOME/ardop/start-pat
         rm $HOME/ardop/stop-pat
         rm $HOME/ardop/findardop
@@ -28,9 +20,6 @@ read REMOVEOLD
         rm $HOME/ardop/patlogin
         rm $HOME/ardop/worldgridmap.pdf
         rm $HOME/ardop/uninstall
-        else
-        exit
-        fi
 fi
 
 
