@@ -49,4 +49,4 @@ sleep 1
 PORT=$(grep -w "http_addr" $HOME/.wl2k/config.json | sed 's/.*: //;s/.*://;s/",//')
 
 #open inbox in chrome browser window
-#export DISPLAY=:0 && chromium-browser --app=http://127.0.0.1:$PORT
+export DISPLAY=:0 && chromium-browser http://127.0.0.1:$PORT
