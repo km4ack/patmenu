@@ -10,7 +10,7 @@ echo;echo;echo;
 #check if patmenu already installed
 #and remove old files if installed.
 if [ -f $HOME/ardop/patmenu ]
-
+then
         rm $HOME/ardop/start-pat
         rm $HOME/ardop/stop-pat
         rm $HOME/ardop/findardop
