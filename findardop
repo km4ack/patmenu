@@ -12,13 +12,13 @@
 
 #Path to ARDOP files.
 #Path below and path in getardoplist MUST MATCH
-MYPATH=~/Documents/ardop-list/
+MYPATH=$HOME/patmenu/ardop-list/
 
 #Path for getardoplist script
-SCRIPT_PATH=$HOME/ardop/getardoplist
+SCRIPT_PATH=$HOME/patmenu/getardoplist
 
 #path for map pdf
-MAP_PATH=$HOME/ardop/grid-map.pdf
+MAP_PATH=$HOME/patmenu/grid-map.pdf
 
 #Select the pdf app on your system
 #default is evince
@@ -41,15 +41,16 @@ clear
 if      [ -f $MYPATH'ardoplist.txt' ]; then
         echo
 else
-	echo
-	echo
-	echo
-	echo
-	printf "\033[1;31mPLEASE download files before proceeding\033[0m\n"
-	printf "\033[1;31mType getardoplist to download the files\033[0m\n"
-	echo
-	echo 
-	exit
+	$HOME/patmenu/getardoplist
+	#echo
+	#echo
+	#echo
+	#echo
+	#printf "\033[1;31mPLEASE download files before proceeding\033[0m\n"
+	#printf "\033[1;31mType getardoplist to download the files\033[0m\n"
+	#echo
+	#echo 
+	#exit
 fi
 
 
@@ -158,6 +159,7 @@ else
 		echo
 		echo "YOU ARE NOT ONLINE"
 		echo "PLEASE CONNECT AND TRY AGAIN"
+		sleep 5
 		echo
 		fi
 	fi
