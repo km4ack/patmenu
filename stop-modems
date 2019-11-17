@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#20191117 km4ack
+
+#stop all modems that might be running
+
+sudo killall direwolf piardopc kissattach > /dev/null 2>&1
+
+echo;echo
+echo "All modems have been stopped"
+
+sleep 2
+
+exit 0
