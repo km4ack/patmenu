@@ -1,0 +1,27 @@
+#!/bin/bash
+
+#20191117
+
+#script to update pat-menu system if needed
+
+#set date
+NOW=$(date +%Y%m%d)
+
+#get the release file from github
+cd $HOME/patmenu/
+wget https://raw.githubusercontent.com/km4ack/Pat-Menu/master/release
+
+#get date of latest release
+LATEST=$(cat release | grep '^release' | sed 's/release=//')
+
+#compare dates
+
+if [ $NOW -lt $LATEST ]
+then
+echo "we need to update"
+else
+echo "Latest version already installed"
+fi
+
+rm release
+
