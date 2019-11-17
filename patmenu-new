@@ -1,0 +1,87 @@
+#!/bin/bash
+# Pat menu system
+#20191115 km4ack
+
+PS3='Please enter your choice: '
+
+PATAUTO () {
+	
+	clear;echo;echo	
+	echo "Which band would you like to use?"
+	echo "20, 30, 40, or 80"
+	read BAND
+	echo "What is the max distance you wish to try?"
+	read MAX
+	echo "What is the minimum distance you wish to try?"
+	read MIN
+	echo "Please standby"
+		if [ -z $BAND ]
+		then
+		echo "band cannot be blank"
+		sleep 5
+		exit 0
+		elif [ -z $MAX ]
+		then 
+		echo "max distance cannot be blank"
+		exit 0
+		fi
+	$HOME/patmenu/autopat $MAX $BAND $MIN
+	MAINMENU
+}
+
+#catalog function
+CATALOG () {
+	clear;echo;echo
+	$HOME/patmenu/catalog
+	MAINMENU
+}
+
+#find ardop function
+FINDARDOP () {
+	clear;echo;echo
+	$HOME/patmenu/findardop
+	MAINMENU
+}
+
+MAINMENU () {
+clear;echo;echo;echo
+echo "Pat Menu by KM4ACK"
+echo
+options=("Pat Login" "Start ARDOP" "Start Packet" "Find Ardop" "Pat Auto Connect" "Pat Catalog" "Stop Modems" "Exit")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "Pat Login")
+            $HOME/patmenu/patlogin
+	    MAINMENU
+            ;;
+        "Start ARDOP")
+            lxterminal -e $HOME/patmenu/start-pat-ardop
+	    $HOME/patmenu/patmenu-new
+            ;;
+        "Start Packet")
+            $HOME/patmenu/start-pat2m
+	    lxterminal -e $HOME/patmenu/patmenu-new
+            ;;
+       "Find Ardop")
+            FINDARDOP
+            ;;
+       "Pat Auto Connect")
+	    PATAUTO
+            ;;
+       "Pat Catalog")
+            CATALOG
+            ;;
+       "Stop Modems")
+            $HOME/patmenu/stop-modems
+	    MAINMENU
+            ;;
+        "Exit")
+            exit 0
+            ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done
+}
+
+MAINMENU
