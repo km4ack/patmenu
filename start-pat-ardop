@@ -1,0 +1,46 @@
+#!/bin/bash
+
+#start ardop modem
+
+#20191117 km4ack
+
+SETRIG () {
+
+#get rig command from config file
+RIG=$(cat config | grep '^rigctl' | sed 's/rigctl="//' | sed 's/"//')
+
+#Set USB Mode
+RIGUSB=$RIG" M USB 0"
+
+#check rig is in USB
+MODE=$($RIG m | grep USB)
+
+sleep 1
+
+	MODECHECK() {
+	#check rig is in USB
+	MODE=$($RIG m | grep USB)
+	}
+
+sleep 1
+
+	if [ -z $MODE ]
+	then
+	$RIGUSB
+	MODECHECK
+	fi
+
+}
+
+#see if rig control is used
+CONTROL=$(cat $HOME/patmenu/config | grep '^rigcontrol' | sed 's/rigcontrol=//')
+if [ $CONTROL == 'yes' ]
+then 
+SETRIG
+fi
+
+#get ardop command from config file
+ARDOP=$(cat $HOME/patmenu/config | grep '^ardop' | sed 's/ardop="//' | sed 's/"//')
+
+#start modem
+$ARDOP
