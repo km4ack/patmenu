@@ -4,20 +4,15 @@
 #will mod ~/.wl2k/config.json file
 #this will only change
 #operator, callsign, grid, and http address
-#http address is set on port 8080 by default
-#but can be changed below. just change
-#PORT=8080 to the port number you wish to use.
 
 #km4ack 20190404
-
-#stop pat so we can change the config file
-sudo killall pat
+#last edit 20191116
 
 FIG=$HOME/.wl2k/config.json
 
 #HTTP port number
-#default is 8080
-PORT=8080
+#taken from config file
+PORT=$(cat $HOME/patmenu/config | grep '^PORT' | sed 's/PORT=//')
 
 
 QUESTIONS () {
@@ -26,10 +21,13 @@ echo
 echo
 echo
 echo "What is your callsign"
+echo "or 'exit' to quit"
 read CALLSIGN
 if [ -z "$CALLSIGN" ]
 then 
 QUESTIONS
+elif [ $CALLSIGN == 'exit' ]
+then exit
 fi
 echo "What is your winlink password?"
 read PASS
@@ -55,13 +53,19 @@ sed -i "s/\"locator\": \".*\",/\"locator\": \"$GRID\",/" $FIG
 #Change localhost to 0.0.0.0
 sed -i "s/\"http_addr\": \".*\",/\"http_addr\": \"0.0.0.0:$PORT\",/" $FIG
 echo "Config file has been updated"
+echo "Pat is being restarted to aquire new credentials"
+sleep 2
+else
+QUESTIONS
 fi
 }
 
 QUESTIONS
 
-if [ $ANSWER == 'n' ]
-then
-QUESTIONS
-fi
+#stop pat so we can grab new login
+sudo killall pat
+#get user name
+WHO=$(whoami)
+#need to restart pat to enable new login
+sudo systemctl start pat@$WHO
 
