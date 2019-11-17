@@ -1,0 +1,76 @@
+#!/bin/bash
+
+#script to start Pat for 2m packet work
+#20191116 km4ack
+
+clear
+
+echo;echo;
+echo "Please standby"
+echo "The Pat Menu will open in a new window in just a moment"
+echo;echo
+sudo killall direwolf kissattach > /dev/null 2>&1
+sleep 1
+
+#get rig command from config file
+RIG=$(cat config | grep '^rigctl' | sed 's/rigctl="//' | sed 's/"//')
+
+#Set FM Mode
+RIGFM=$RIG" M FM 0"
+
+#set the long date
+TODAY=$(date)
+
+#set path to my log
+MYLOG=$HOME/Documents/mylog.txt
+
+SETRIG () {
+
+#set radio frequency & mode
+$RIGFM
+
+sleep 1
+
+#check rig is in FM
+MODE=$($RIG m | grep FM)
+
+sleep 1
+
+	MODECHECK() {
+	#check rig is in FM
+	MODE=$($RIG m | grep FM)
+	}
+
+sleep 1
+
+	if [ -z $MODE ]
+	then
+	$RIGFM
+	MODECHECK
+	fi
+}
+
+
+#see if rig control is used
+CONTROL=$(cat $HOME/patmenu/config | grep '^rigcontrol' | sed 's/rigcontrol=//')
+if [ $CONTROL == 'yes' ]
+then 
+SETRIG
+fi
+
+#start direwolf
+/usr/local/bin/direwolf -p &
+
+sleep 5
+
+#start kissattach
+sudo /usr/sbin/kissattach /tmp/kisstnc wl2k
+sudo kissparms -c 1 -p wl2k
+echo;echo;echo;
+echo "#################################################"
+echo "#    Leave this window open while you make      #"
+echo "#    your packet connection.                    #"
+echo "#    Closing this window will stop direwolf     #"
+echo "#    and your packet connection will not work   #"
+echo "#################################################"
+
