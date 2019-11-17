@@ -8,6 +8,8 @@ ardop="/home/km4ack/ardop/./piardopc 8515 plughw:1,0 plughw:1,0"
 
 rigcontrol=yes
 
+#Set map to use. Either usa or world. Must be lower case
+map=usa
 
 #enter your rig control command below. DO NOT enter mode
 #or frequency commands as these are handled by the script
