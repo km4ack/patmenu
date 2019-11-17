@@ -8,8 +8,6 @@
 #Feel free to mod to suit your needs
 #20181217 km4ack
 
-######## USER CONFIG ####################
-
 #Path to ARDOP files.
 #Path below and path in getardoplist MUST MATCH
 MYPATH=$HOME/patmenu/ardop-list/
@@ -18,15 +16,19 @@ MYPATH=$HOME/patmenu/ardop-list/
 SCRIPT_PATH=$HOME/patmenu/getardoplist
 
 #path for map pdf
+MAPTYPE=$(cat $HOME/patmenu/config | grep '^map' | sed 's/map=//')
+if [ $MAPTYPE == 'usa' ]
+then
 MAP_PATH=$HOME/patmenu/grid-map.pdf
+else
+MAP_PATH=$HOME/patmenu/worldgridmap.pdf
+fi
 
 #Select the pdf app on your system
 #default is evince
 #you can also use xpdf if you have it installed
 #PDF_APP=xpdf
 PDF_APP='evince -w'
-
-######### END USER CONFIG ################
 
 
 #Read date of last download in each file
