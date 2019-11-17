@@ -4,7 +4,7 @@
 #20191110 KM4ACK
 
 #verify the city weather list exist
-FILE=weather.txt
+FILE=$HOME/patmenu/weather.txt
 if [ -f $FILE ]; then
    echo ""
 else
