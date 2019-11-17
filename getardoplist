@@ -10,7 +10,7 @@
 
 #path where files are located
 #must match path in findardop script
-MYPATH=~/Documents/ardop-list/
+MYPATH=$HOME/patmenu/ardop-list/
 
 #make directory if it doesn't exist
 mkdir -p $MYPATH
