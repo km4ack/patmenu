@@ -47,7 +47,7 @@ MAINMENU () {
 clear;echo;echo;echo
 echo "Pat Menu by KM4ACK"
 echo
-options=("Pat Login" "Start ARDOP" "Start Packet" "Find Ardop" "Pat Auto Connect" "Pat Catalog" "Stop Modems" "Exit")
+options=("Pat Login" "Start ARDOP" "Start Packet" "Find Ardop" "Pat Auto Connect" "Pat Catalog" "Stop Modems" "Update Pat Menu" "Exit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -74,6 +74,10 @@ do
             ;;
        "Stop Modems")
             $HOME/patmenu/stop-modems
+	    MAINMENU
+            ;;
+	"Update Pat Menu")
+            $HOME/patmenu/update
 	    MAINMENU
             ;;
         "Exit")
