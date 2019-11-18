@@ -29,7 +29,7 @@ read ANSWER
   git clone https://github.com/km4ack/patmenu.git
   cp $HOME/Downloads/patmenu/* $HOME/patmenu/
   rm -rf $HOME/Downloads/patmenu
-  chmod +x setup
+  chmod +x $HOME/patmenu/setup
   ./setup
   fi
 else
