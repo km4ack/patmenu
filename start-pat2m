@@ -5,7 +5,7 @@
 
 clear
 
-DIREWOLF=$(cat $HOME/patmenu/config | grep DIREWOLF | sed 's/DIREWOLF="//' | sed 's/"//')
+DIREWOLF=$(cat $HOME/patmenu/config | grep '^DIREWOLF' | sed 's/DIREWOLF="//' | sed 's/"//')
 
 echo;echo;
 echo "Please standby"
@@ -15,7 +15,7 @@ sudo killall direwolf kissattach > /dev/null 2>&1
 sleep 1
 
 #get rig command from config file
-RIG=$(cat $HOME/patmenu/config | grep '^rigctl' | sed 's/rigctl="//' | sed 's/"//')
+RIG=$(cat config | grep '^rigctl' | sed 's/rigctl="//' | sed 's/"//')
 
 #Set FM Mode
 RIGFM=$RIG" M FM 0"
