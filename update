@@ -30,11 +30,11 @@ read ANSWER
   cp $HOME/Downloads/patmenu/* $HOME/patmenu/
   rm -rf $HOME/Downloads/patmenu
   chmod +x $HOME/patmenu/setup
-  ./setup
+  $HOME/patmenu/./setup
   fi
 else
 echo "Latest version already installed"
 fi
 
-rm release
+rm $HOME/patmenu/release
 
