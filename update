@@ -18,7 +18,20 @@ LATEST=$(cat release | grep '^release' | sed 's/release=//')
 
 if [ $NOW -lt $LATEST ]
 then
-echo "we need to update"
+clear
+echo "Pat-Menu needs to be updated"
+echo "Would you like to update now? y/n"
+read ANSWER
+  if [ $ANSWER == 'y' ]
+  then
+  mkdir -p $HOME/Downloads
+  cd $HOME/Downloads
+  git clone https://github.com/km4ack/patmenu.git
+  cp $HOME/Downloads/patmenu/* $HOME/patmenu/
+  rm -rf $HOME/Downloads/patmenu
+  chmod +x setup
+  ./setup
+  fi
 else
 echo "Latest version already installed"
 fi
