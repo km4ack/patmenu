@@ -31,3 +31,7 @@ fi
 
 #create symlink on desktop
 ln -s $HOME/patmenu/patmenu-new $HOME/Desktop/Pat-Menu
+
+#remove a few files
+rm $HOME/patmenu/readme.md
+rm $HOME/patmenu/patsetup
