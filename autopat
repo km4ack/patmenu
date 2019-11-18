@@ -4,24 +4,18 @@
 #within 'x' number of km from our station
 #km4ack 20191015
 
-############USER VARIABLES#######################
-
 #path to ardop
 #ARDOP="$HOME/ardop/./piardopc 8515 plughw:1,0 plughw:1,0"
 ARDOP=$(cat $HOME/patmenu/config | grep '^ardop' | sed 's/ardop="//' | sed 's/"//')
 
 #rig control
 #RIG="/usr/local/bin/rigctl -m 122 -r /dev/ttyUSB0 -s 4800 M USB 0"
-RIG=$(cat config | grep '^rigctl' | sed 's/rigctl="//' | sed 's/"//')
+RIG=$(cat $HOME/patmenu/config | grep '^rigctl' | sed 's/rigctl="//' | sed 's/"//')
 
 RIGUSB=$RIG" M USB 0"
 
 #Path to my Log File
 LOG=/home/km4ack/Documents/mylog.txt
-
-############END USER VARIABLES###################
-
-
 
 #Directions Function
 directions () {
