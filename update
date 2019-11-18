@@ -40,5 +40,5 @@ echo "Latest version already installed"
 sleep 2
 fi
 
-#rm $HOME/patmenu/latest
+rm $HOME/patmenu/latest
 
