@@ -18,7 +18,8 @@ PATAUTO () {
 		if [ -z $BAND ]
 		then
 		echo "band cannot be blank"
-		sleep 5
+		sleep 3
+		MAINMENU
 		exit 0
 		elif [ -z $MAX ]
 		then 
