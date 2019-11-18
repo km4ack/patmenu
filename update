@@ -33,7 +33,9 @@ read ANSWER
   $HOME/patmenu/./setup
   fi
 else
+clear;echo;echo;echo;
 echo "Latest version already installed"
+sleep 2
 fi
 
 rm $HOME/patmenu/release
