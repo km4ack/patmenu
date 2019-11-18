@@ -4,7 +4,7 @@
 
 #20191117
 
-chmod +x autopat catalog findardop getardoplist patlogin patmenu-new start-pat2m start-pat-ardop stop-modems uninstall update
+chmod +x $HOME/patmenu/autopat catalog findardop getardoplist patlogin patmenu-new start-pat2m start-pat-ardop stop-modems uninstall update
 
 
 #check if evince is installed
