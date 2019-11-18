@@ -1,0 +1,31 @@
+#!/bin/bash
+
+#script to setup patmenu system after downloaded
+
+#20191117
+
+chmod +x autopat catalog findardop getardoplist patlogin patmenu-new start-pat2m start-pat-ardop stop-modems uninstall update
+
+
+#check if evince is installed
+EVINCE=$(dpkg --get-selections | grep -w "evince")
+if [ -z "$EVINCE" ]
+then
+sudo apt-get install -y evince
+else
+echo "evince is already installed"
+fi
+
+#check to see if ardop list exist. get if needed.
+if [ -f $HOME/patmenu/ardop-list/ardoplist.txt ]
+then
+    echo "ARDOP list exist. No need to download"
+else
+#run initial getardoplist
+echo "Please wait while the latest"
+echo "Gateway list is downloaded"
+$HOME/patmenu/getardoplist
+fi
+
+#create symlink on desktop
+ln -s $HOME/patmenu/patmenu-new $HOME/Desktop/Pat-Menu
