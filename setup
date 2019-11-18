@@ -30,7 +30,7 @@ $HOME/patmenu/getardoplist
 fi
 
 #create symlink on desktop
-ln -s $HOME/patmenu/patmenu-new $HOME/Desktop/Pat-Menu
+ln -sf $HOME/patmenu/patmenu-new $HOME/Desktop/Pat-Menu
 
 #remove a few files
 rm $HOME/patmenu/README.md
