@@ -13,10 +13,12 @@ map=usa
 
 #enter your rig control command below. DO NOT enter mode
 #or frequency commands as these are handled by the script
-#Be sure to not delete
-#the quotation marks.
+#Be sure to not delete the quotation marks.
 
 rigctl="/usr/local/bin/rigctl -m 122 -r /dev/ttyUSB0 -s 4800"
+
+#command to start direwolf
+DIREWOLF="direwolf -p"
 
 #port number used by pat html service
 #default is 8080
