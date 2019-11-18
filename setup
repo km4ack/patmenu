@@ -45,4 +45,4 @@ echo "#      click the icon and choose        #"
 echo "#      "execute in terminal"            #"
 echo "#########################################"
 
-leafpad $HOME/patmenu/readme
+leafpad $HOME/patmenu/readme &
