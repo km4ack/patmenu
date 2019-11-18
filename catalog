@@ -167,7 +167,7 @@ do
 	echo
 	read -n 1 -s -r -p "Press any key to continue"
 	clear
-	cat weather.txt | column -s ',' -t | more
+	cat $HOME/patmenu/weather.txt | column -s ',' -t | more
 	echo;echo;echo;
 	echo "What is the area ID you would like to request? "
 	read CITY
