@@ -5,7 +5,7 @@
 
 clear
 
-DIREWOLF=$(cat $HOME/patmenu/config | grep '^DIREWOLF' | sed 's/DIREWOLF="//' | sed 's/"//')
+source $HOME/patmenu/config
 
 echo;echo;
 echo "Please standby"
@@ -13,9 +13,6 @@ echo "The Pat Menu will open in a new window in just a moment"
 echo;echo
 sudo killall direwolf kissattach > /dev/null 2>&1
 sleep 1
-
-#get rig command from config file
-RIG=$(cat $HOME/patmenu/config | grep '^rigctl' | sed 's/rigctl="//' | sed 's/"//')
 
 #Set FM Mode
 RIGFM=$RIG" M FM 0"
@@ -54,8 +51,7 @@ sleep 1
 
 
 #see if rig control is used
-CONTROL=$(cat $HOME/patmenu/config | grep '^rigcontrol' | sed 's/rigcontrol=//')
-if [ $CONTROL == 'yes' ]
+if [ $RIGCONTROL == 'yes' ]
 then 
 SETRIG
 fi
