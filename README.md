@@ -8,8 +8,8 @@ This is still considered ALPHA code. Things may or may not work for you. It has 
 Please report any bugs/issues with the menu https://github.com/km4ack/Pat-Menu/issues
 
 # Install
-    wget https://git.io/fjLPg -O $HOME/Downloads/patsetup && bash $HOME/Downloads/patsetup
+    git clone https://github.com/km4ack/patmenu.git -O $HOME/patmenu && bash $HOME/patmenu/setup
+    
+Be sure to update the config file before launching the menu for the first time.
 
-Once setup is finished, start the menu with
-
-    patmenu
+Once setup is finished, start the menu using the new icon on the desktop. Double click and then choose "Execute in Terminal"
