@@ -37,7 +37,7 @@ rm $HOME/patmenu/README.md
 rm $HOME/patmenu/patsetup
 
 echo "#########################################"
-echo "#      Please see config file before.   #"
+echo "#      Please see config file before    #"
 echo "#      running Pat Menu. There is a     #"
 echo "#      new icon on the desktop to start #"
 echo "#      the new menu system. Double      #"
