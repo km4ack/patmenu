@@ -2,12 +2,13 @@
 
 #start ardop modem
 
-#20191117 km4ack
+#20191118 km4ack
+
+source $HOME/patmenu/config
+
+echo "stand by while the modem starts"
 
 SETRIG () {
-
-#get rig command from config file
-RIG=$(cat $HOME/patmenu/config | grep '^rigctl' | sed 's/rigctl="//' | sed 's/"//')
 
 #Set USB Mode
 RIGUSB=$RIG" M USB 0"
@@ -33,14 +34,10 @@ sleep 1
 }
 
 #see if rig control is used
-CONTROL=$(cat $HOME/patmenu/config | grep '^rigcontrol' | sed 's/rigcontrol=//')
-if [ $CONTROL == 'yes' ]
+if [ $RIGCONTROL == 'yes' ]
 then 
 SETRIG
 fi
-
-#get ardop command from config file
-ARDOP=$(cat $HOME/patmenu/config | grep '^ardop' | sed 's/ardop="//' | sed 's/"//')
 
 #start modem
 $ARDOP
