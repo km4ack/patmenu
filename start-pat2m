@@ -5,6 +5,8 @@
 
 clear
 
+DIREWOLF=$(cat $HOME/patmenu/config | grep DIREWOLF | sed 's/DIREWOLF="//' | sed 's/"//')
+
 echo;echo;
 echo "Please standby"
 echo "The Pat Menu will open in a new window in just a moment"
@@ -59,7 +61,7 @@ SETRIG
 fi
 
 #start direwolf
-/usr/local/bin/direwolf -p &
+/usr/local/bin/$DIREWOLF &
 
 sleep 5
 
