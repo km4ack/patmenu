@@ -8,6 +8,8 @@
 #Feel free to mod to suit your needs
 #20181217 km4ack
 
+source $HOME/patmenu/config
+
 #Path to ARDOP files.
 #Path below and path in getardoplist MUST MATCH
 MYPATH=$HOME/patmenu/ardop-list/
@@ -16,8 +18,7 @@ MYPATH=$HOME/patmenu/ardop-list/
 SCRIPT_PATH=$HOME/patmenu/getardoplist
 
 #path for map pdf
-MAPTYPE=$(cat $HOME/patmenu/config | grep '^map' | sed 's/map=//')
-if [ $MAPTYPE == 'usa' ]
+if [ $MAP == 'usa' ]
 then
 MAP_PATH=$HOME/patmenu/grid-map.pdf
 else
