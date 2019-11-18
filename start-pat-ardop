@@ -7,7 +7,7 @@
 SETRIG () {
 
 #get rig command from config file
-RIG=$(cat config | grep '^rigctl' | sed 's/rigctl="//' | sed 's/"//')
+RIG=$(cat $HOME/patmenu/config | grep '^rigctl' | sed 's/rigctl="//' | sed 's/"//')
 
 #Set USB Mode
 RIGUSB=$RIG" M USB 0"
