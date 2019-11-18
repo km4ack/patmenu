@@ -15,7 +15,7 @@ sudo killall direwolf kissattach > /dev/null 2>&1
 sleep 1
 
 #get rig command from config file
-RIG=$(cat config | grep '^rigctl' | sed 's/rigctl="//' | sed 's/"//')
+RIG=$(cat $HOME/patmenu/config | grep '^rigctl' | sed 's/rigctl="//' | sed 's/"//')
 
 #Set FM Mode
 RIGFM=$RIG" M FM 0"
