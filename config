@@ -1,26 +1,24 @@
 #enter your piardopc command on the line labeled "ardop="
 #between the quotation marks. Be sure to not delete
 #the quotation marks.
-
 ardop="/home/km4ack/ardop/./piardopc 8515 plughw:1,0 plughw:1,0"
-
-#choose rig control. Enter yes or no
-
-rigcontrol=yes
 
 #Set map to use. Either usa or world. Must be lower case
 map=usa
 
+#Rig control. Enter yes or no. Must be lower case.
+#NOTE:rig control required if using autopat from the menu
+rigcontrol=yes
+
 #enter your rig control command below. DO NOT enter mode
 #or frequency commands as these are handled by the script
 #Be sure to not delete the quotation marks.
-
+#CAREFUL! This is case sensitive
 rigctl="/usr/local/bin/rigctl -m 122 -r /dev/ttyUSB0 -s 4800"
 
 #command to start direwolf
 DIREWOLF="direwolf -p"
 
 #port number used by pat html service
-#default is 8080
-
+#pat default is 8080 but I prefer 5000
 PORT=5000
