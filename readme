@@ -1,0 +1,48 @@
+Pat Menu Introduction
+Script to make working with Pat Winlink a bit easier.
+20191118 km4ack
+
+Before using the menu system, you will need to mod the config file for your setup. The config file can be 
+found at ~/patmenu/config
+See this video - 
+
+1. Pat Login
+This can be used to to change operators for Pat should you find the need. It will modify the operators callsign, password, 
+gridsquare, & the port number used to access pat. The port number used is found in the config file.
+
+2. Start ARDOP
+This is used to start the ARDOP modem for HF connections. The exact command used is found in the config file.
+
+3. Start Packet
+This is used to start the needed components for packet connections using Pat. The direwolf command can be modified in the 
+config file if needed. Default is "direwolf -p" On Buster, this is known to cause flashing text in the terminal window. 
+In this case you may want to change it to "direwolf -p -t 0" which will start direwolf in black and white mode and stop 
+the flashing text.
+
+4. Find ARDOP
+This will aid in locating ardop gateways to connect with. The list can be automatically update each day by adding 
+the following to your cron jobs.
+00 11 * * * $HOME/patmenu/getardoplist
+This would update the list everyday at 11AM.
+
+5. Pat Auto Connect
+This is a script that will automatically try to connect with ALL winlink gateways at distances you specify. 
+You must set the band, & max distance. The minimum distance may be set or left blank. After setting the variables, 
+the script will attempt to connect to ALL gateways that meet your criteria. It will continue until it completes a 
+connection at which time it will stop OR it will exaust the list trying to complete a connection.
+
+6. Pat Catalog
+This script will aid in posting catalog requests to your outbox. Several catagories of requests are available such as 
+weather, news, propagation, etc. After posting a request using the menu, go to Pat and make a Winlink connection. Telnet 
+is great here for testing. Then wait 5 minutes or so and make another Winlink connection with Pat. The information you 
+requested will be delivered to your inbox. GPS weather is only available if you have a GPS dongle on your pi. Currently, 
+it is a very minimal catalog. Additions may be made in the future depending on demand.
+
+7. Stop Modems
+This is used to stop modems that you aren't using. This option will stop direwolf, kissattach, and piardopc. It should also 
+be used before moving from Packet connections to ARDOP connections and vice versa. If in doubt or you are having issues with 
+a modem starting, try using this option and then try again to start the modem you with to use. 
+
+8. Update Pat Menu
+This will look at the current version of pat menu on your system and compare it to the latest version on github. If available 
+updates are found, you will be given the option to update to the latest version.
