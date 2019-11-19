@@ -2,20 +2,53 @@
 
 #script to connect to winlink stations
 #within 'x' number of km from our station
-#km4ack 20191015
+#km4ack 20191118
+
+source $HOME/patmenu/config
+
+ARDOPLIST=$HOME/patmenu/ardop-list/
 
 #path to ardop
 #ARDOP="$HOME/ardop/./piardopc 8515 plughw:1,0 plughw:1,0"
-ARDOP=$(cat $HOME/patmenu/config | grep '^ardop' | sed 's/ardop="//' | sed 's/"//')
 
 #rig control
-#RIG="/usr/local/bin/rigctl -m 122 -r /dev/ttyUSB0 -s 4800 M USB 0"
-RIG=$(cat $HOME/patmenu/config | grep '^rigctl' | sed 's/rigctl="//' | sed 's/"//')
+#RIG="/usr/local/bin/rigctl -m 122 -r /dev/ttyUSB0 -s 4800"
 
+LOGFILE=$HOME/Documents/mylog.txt
+
+touch $LOGFILE
+
+DATE=$(date)
+
+SETRIG () {
+
+#Set USB Mode
 RIGUSB=$RIG" M USB 0"
 
+#check rig is in USB
+MODE=$($RIG m | grep USB)
+
+sleep 1
+
+	MODECHECK() {
+	#check rig is in USB
+	MODE=$($RIG m | grep USB)
+	}
+
+sleep 1
+
+	if [ -z $MODE ]
+	then
+	$RIGUSB
+	MODECHECK
+	fi
+
+}
+
+SETRIG
+
 #Path to my Log File
-LOG=/home/km4ack/Documents/mylog.txt
+LOG=$LOGFILE
 
 #Directions Function
 directions () {
@@ -27,6 +60,10 @@ echo "The first argument is the distance"
 echo "and the second is the band. So to try all 40M"
 echo "stations in a 300km radius, you would enter"
 echo "autopat 300 40"
+echo "You can also restrict how close you want to start attempts"
+echo "by enter the minimum distace as the third argument"
+echo "So all stations from 500-600KM on 40M would be"
+echo "autopat 300 600 500"
 exit 0
 }
 
@@ -53,16 +90,16 @@ fi
 #take $2 as band to use
 if [ $2 = "20" ]
 then
-FILE=$HOME/Documents/ardop-list/20mardoplist.txt
+FILE=$ARDOPLIST"20mardoplist.txt"
 elif [ $2 = "30" ]
 then 
-FILE=$HOME/Documents/ardop-list/30mardoplist.txt
+FILE=$ARDOPLIST"30mardoplist.txt"
 elif [ $2 = "40" ]
 then
-FILE=$HOME/Documents/ardop-list/40mardoplist.txt
+FILE=$ARDOPLIST"40mardoplist.txt"
 elif [ $2 = "80" ]
 then
-FILE=$HOME/Documents/ardop-list/80mardoplist.txt
+FILE=$ARDOPLIST"80mardoplist.txt"
 fi
 
 #Verify we have a list to work with
@@ -76,13 +113,11 @@ exit 0
 fi
 
 #start piardopc
-#$ARDOP &
+$ARDOP &
 sleep 10
 
 #Pat Connection Function
 connect () {
-#set radio to USB - Pat can't do this on it's own
-$RIGUSB
 pat connect $CALL
 #Check if connection was successful
 RESULTS=$(echo $?)
@@ -122,6 +157,7 @@ while read LINE
 	fi
 done < $HOME/tempardop/sorted.txt
 
+echo $DATE" autopat unable to make connection" >> $LOGFILE
 
 #remove temp directory & files
-rm -rf $HOME/tempardop
+#rm -rf $HOME/tempardop
