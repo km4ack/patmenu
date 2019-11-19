@@ -47,9 +47,6 @@ sleep 1
 
 SETRIG
 
-#Path to my Log File
-LOG=$LOGFILE
-
 #Directions Function
 directions () {
 echo "The script needs two arguments to run."
@@ -124,7 +121,7 @@ RESULTS=$(echo $?)
 if [ $RESULTS = "0" ]
 then
 echo "A connection was made"
-echo $DATE" "$Call" Success with autopat" >> $LOG
+echo $DATE" "$Call" Success with autopat" >> $LOGFILE
 sudo killall piardopc
 exit 0
 fi
