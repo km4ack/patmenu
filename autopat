@@ -113,7 +113,7 @@ exit 0
 fi
 
 #start piardopc
-$ARDOP &
+#$ARDOP &
 sleep 10
 
 #Pat Connection Function
@@ -153,11 +153,11 @@ while read LINE
 	then
 	echo "Distance="$DISTANCE " Call="$CALL
 	#call the connect funtion
-	connect
+	#connect
 	fi
 done < $HOME/tempardop/sorted.txt
 
-echo $DATE" autopat unable to make connection" >> $LOGFILE
+#echo $DATE" autopat unable to make connection" >> $LOGFILE
 
 #remove temp directory & files
 #rm -rf $HOME/tempardop
