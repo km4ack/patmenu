@@ -2,7 +2,7 @@
 #Be sure to not delete the quotation marks.
 ARDOP="/home/km4ack/ardop/./piardopc 8515 plughw:1,0 plughw:1,0"
 
-#Use rig control? yes or no
+#Use rig control? yes or no NOTE: autopat will not work without rig control
 RIGCONTROL=yes
 
 #Set map to use.
