@@ -14,6 +14,13 @@ MAP=usa
 #Be sure to not delete the quotation marks.
 RIG="/usr/local/bin/rigctl -m 122 -r /dev/ttyUSB0 -s 4800"
 
+#Mode used for HF digital comms on your radio
+MODEHF=USB
+
+#Mode used for packet digital comms on your radio
+MODE2M=FM
+
+
 #command to start direwolf
 DIREWOLF="direwolf -p"
 
