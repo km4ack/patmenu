@@ -11,16 +11,16 @@ echo "stand by while the modem starts"
 SETRIG () {
 
 #Set USB Mode
-RIGUSB=$RIG" M USB 0"
+RIGUSB=$RIG" M $MODEHF 0"
 
 #check rig is in USB
-MODE=$($RIG m | grep USB)
+MODE=$($RIG m | grep $MODEHF)
 
 sleep 1
 
 	MODECHECK() {
-	#check rig is in USB
-	MODE=$($RIG m | grep USB)
+	#check rig is in correct mode
+	MODE=$($RIG m | grep $MODEHF)
 	}
 
 sleep 1
