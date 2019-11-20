@@ -14,8 +14,8 @@ echo;echo
 sudo killall direwolf kissattach > /dev/null 2>&1
 sleep 1
 
-#Set FM Mode
-RIGFM=$RIG" M FM 0"
+#Set Mode
+RIGFM=$RIG" M $MODE2M 0"
 
 #set the long date
 TODAY=$(date)
@@ -30,14 +30,14 @@ $RIGFM
 
 sleep 1
 
-#check rig is in FM
-MODE=$($RIG m | grep FM)
+#check rig is in correct mode
+MODE=$($RIG m | grep $MODE2M)
 
 sleep 1
 
 	MODECHECK() {
-	#check rig is in FM
-	MODE=$($RIG m | grep FM)
+	#check rig is in correct mode
+	MODE=$($RIG m | grep $MODE2M)
 	}
 
 sleep 1
