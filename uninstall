@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #uninstall script for pat menu 
-#km4ack 20190405
+#km4ack 20191120
 
 clear
 echo;echo;echo
@@ -16,16 +16,9 @@ read ANSWER
 
 if [ $ANSWER == "y" ]
 then
-rm $HOME/ardop/findardop
-rm $HOME/ardop/getardoplist
-rm $HOME/ardop/grid-map.pdf
-rm $HOME/ardop/worldgridmap.pdf
-rm $HOME/ardop/patlogin
-rm $HOME/ardop/patmenu
-rm $HOME/ardop/start-pat
-rm $HOME/ardop/stop-pat
-rm -rf $HOME/Documents/ardop-list
-rm $HOME/ardop/uninstall
+cd $HOME
+rm -rf $HOME/patmenu
+rm $HOME/Desktop/Pat-Menu
 else
 exit
 fi
