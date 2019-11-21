@@ -35,6 +35,7 @@ ln -sf $HOME/patmenu/patmenu-new $HOME/Desktop/Pat-Menu
 #remove a few files
 rm $HOME/patmenu/README.md
 rm $HOME/patmenu/patsetup
+rm $HOME/patmenu/setup
 
 echo "#########################################"
 echo "#      Please see config file before    #"
