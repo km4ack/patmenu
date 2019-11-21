@@ -1,8 +1,9 @@
 This file is used by the update script to check and make sure that the latest version of pat menu is installed on the system.
 
-release=0.34
+release=0.35
 
 
 Changelog
 0.33 add mode to config file
 0.34 update uninstall
+0.35 move log file variable to config file
