@@ -8,6 +8,8 @@ source $HOME/patmenu/config
 
 ARDOPLIST=$HOME/patmenu/ardop-list/
 
+touch $LOG
+
 #path to ardop
 #ARDOP="$HOME/ardop/./piardopc 8515 plughw:1,0 plughw:1,0"
 #ARDOP=$(cat $HOME/patmenu/config | grep '^ardop' | sed 's/ardop="//' | sed 's/"//')
@@ -44,9 +46,6 @@ sleep 1
 }
 
 SETRIG
-
-#Path to my Log File
-LOG=/home/km4ack/Documents/mylog.txt
 
 #Directions Function
 directions () {
