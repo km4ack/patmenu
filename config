@@ -2,6 +2,9 @@
 #Be sure to not delete the quotation marks.
 ARDOP="/home/km4ack/ardop/./piardopc 8515 plughw:1,0 plughw:1,0"
 
+#command to start direwolf
+DIREWOLF="direwolf -p"
+
 #Use rig control? yes or no NOTE: autopat will not work without rig control
 RIGCONTROL=yes
 
@@ -20,10 +23,8 @@ MODEHF=USB
 #Mode used for packet digital comms on your radio
 MODE2M=FM
 
-
-#command to start direwolf
-DIREWOLF="direwolf -p"
-
 #port number used by pat html service
 #pat default is 8080. I prefer 5000
 PORT=5000
+
+LOG=/home/km4ack/Documents/mylog.txt
