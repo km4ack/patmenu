@@ -27,4 +27,4 @@ MODE2M=FM
 #pat default is 8080. I prefer 5000
 PORT=5000
 
-LOG=/home/km4ack/Documents/mylog.txt
+LOG=$HOME/Documents/mylog.txt
