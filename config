@@ -1,6 +1,6 @@
 #enter your piardopc command on the line below
 #Be sure to not delete the quotation marks.
-ARDOP="/home/km4ack/ardop/./piardopc 8515 plughw:1,0 plughw:1,0"
+ARDOP="$HOME/ardop/./piardopc 8515 plughw:1,0 plughw:1,0"
 
 #command to start direwolf
 DIREWOLF="direwolf -p"
