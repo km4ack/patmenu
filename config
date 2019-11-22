@@ -5,12 +5,12 @@ ARDOP="/home/km4ack/ardop/./piardopc 8515 plughw:1,0 plughw:1,0"
 #command to start direwolf
 DIREWOLF="direwolf -p"
 
-#Use rig control? yes or no NOTE: autopat will not work without rig control
-RIGCONTROL=yes
-
-#Set map to use.
+#Set map to use with findardop
 MAP=usa
 #MAP=world
+
+#Use rig control? yes or no NOTE: autopat will not work without rig control
+RIGCONTROL=yes
 
 #enter your rig control command below. DO NOT enter mode
 #or frequency commands as these are handled by the script
