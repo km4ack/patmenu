@@ -53,6 +53,13 @@ sleep 1
 #see if rig control is used
 if [ $RIGCONTROL == 'yes' ]
 then 
+PIDCTL=$(pidof rigctld)
+WHO=$(whoami)
+	if [ -z "$PIDCTL" ]
+	then	
+	CONTROL=$(cat $HOME/patmenu/config | grep '^RIG="' | sed 's/RIG="//' | sed 's/"//' | sed 's/rigctl/rigctld/')
+	$CONTROL &
+	sudo systemctl restart pat@$WHO
 SETRIG
 fi
 
