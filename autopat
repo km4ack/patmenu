@@ -20,6 +20,18 @@ touch $LOG
 
 DATE=$(date)
 
+#start rigctld if not already
+PIDCTL=$(pidof rigctld)
+WHO=$(whoami)
+	if [ -z "$PIDCTL" ]
+	then	
+	CONTROL=$(cat $HOME/patmenu/config | grep '^RIG="' | sed 's/RIG="//' | sed 's/"//' | sed 's/rigctl/rigctld/')
+	$CONTROL &
+	sudo systemctl restart pat@$WHO
+	fi
+
+sleep 2
+
 SETRIG () {
 
 #Set USB Mode
