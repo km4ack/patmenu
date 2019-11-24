@@ -1,6 +1,6 @@
 This file is used by the update script to check and make sure that the latest version of pat menu is installed on the system.
 
-release=0.39
+release=0.40
 
 
 Changelog
@@ -10,4 +10,5 @@ Changelog
 0.36 add rigctld check & start if needed to start-pat-ardop
 0.37 add rigctld check & start if needed to  start-pat2m
 0.38 close if/then statement in start-pat2m
-0.39 add rigctld check & start to auto-pat
+0.39 add rigctld check & start to autopat
+0.40 change rigctld start in autopat
