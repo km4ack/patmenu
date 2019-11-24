@@ -28,8 +28,10 @@ read ANSWER
   then
   mkdir -p $HOME/Downloads
   cd $HOME/Downloads
+  cp $HOME/patmenu/config $HOME/Downloads/
   git clone https://github.com/km4ack/patmenu.git
   cp $HOME/Downloads/patmenu/* $HOME/patmenu/
+  mv $HOME/Downloads/config $HOME/patmenu/
   rm -rf $HOME/Downloads/patmenu
   chmod +x $HOME/patmenu/setup
   $HOME/patmenu/./setup
