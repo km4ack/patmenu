@@ -47,5 +47,8 @@ WHO=$(whoami)
 SETRIG
 fi
 
+#Start ARDOP_GUI
+$ARDOPGUI &
+
 #start modem
 $ARDOP
