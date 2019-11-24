@@ -1,8 +1,6 @@
 #!/bin/bash
 
-#script to connect to winlink stations
-#within 'x' number of km from our station
-#km4ack 20191015
+#test script to figure out why rig control isn't starting
 
 source $HOME/patmenu/config
 
@@ -10,28 +8,26 @@ ARDOPLIST=$HOME/patmenu/ardop-list/
 
 touch $LOG
 
-#path to ardop
-#ARDOP="$HOME/ardop/./piardopc 8515 plughw:1,0 plughw:1,0"
-#ARDOP=$(cat $HOME/patmenu/config | grep '^ardop' | sed 's/ardop="//' | sed 's/"//')
-
-#rig control
-#RIG="/usr/local/bin/rigctl -m 122 -r /dev/ttyUSB0 -s 4800 M USB 0"
-#RIG=$(cat $HOME/patmenu/config | grep '^rigctl' | sed 's/rigctl="//' | sed 's/"//')
-
 DATE=$(date)
 
+STARTRIG () {
 #start rigctld if not already
 PIDCTL=$(pidof rigctld)
 WHO=$(whoami)
 	if [ -z "$PIDCTL" ]
-	then	
+	then
 	CONTROL=$(echo $RIG | sed 's/rigctl/rigctld/')
-	#CONTROL=$(cat $HOME/patmenu/config | grep '^RIG="' | sed 's/RIG="//' | sed 's/"//' | sed 's/rigctl/rigctld/')
 	$CONTROL &
 	sudo systemctl restart pat@$WHO
 	fi
+}
 
-sleep 2
+STARTRIG
+
+if [ -z "$PIDCTL" ]
+then
+STARTRIG
+fi
 
 SETRIG () {
 
