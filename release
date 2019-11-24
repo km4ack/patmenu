@@ -12,3 +12,4 @@ Changelog
 0.38 close if/then statement in start-pat2m
 0.39 add rigctld check & start to autopat
 0.40 change rigctld start in autopat
+     add backup for config 
