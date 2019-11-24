@@ -6,6 +6,9 @@
 
 source $HOME/patmenu/config
 
+#clear any temp files from previous runs that might exist
+rm -rf $HOME/tempardop > /dev/null
+
 ARDOPLIST=$HOME/patmenu/ardop-list/
 
 touch $LOG
@@ -116,7 +119,8 @@ echo "FILE DOESN'T EXIST."
 exit 0
 fi
 
-#start piardopc
+#start ardop-gui & piardopc
+$ARDOPGUI &
 $ARDOP &
 sleep 10
 
@@ -129,7 +133,7 @@ if [ $RESULTS = "0" ]
 then
 echo "A connection was made"
 echo $DATE" "$Call" Success with autopat" >> $LOG
-sudo killall piardopc
+sudo killall piardopc piARDOP_GUI
 exit 0
 fi
 }
@@ -164,3 +168,6 @@ done < $HOME/tempardop/sorted.txt
 
 #remove temp directory & files
 rm -rf $HOME/tempardop
+
+#Stop ARDOP modem and gui
+sudo killall piardopc piARDOP_GUI
