@@ -7,9 +7,21 @@ clear
 
 source $HOME/patmenu/config
 
+#check if piardopc is running
+PIDDW=$(pidof piardopc)
+if [ -z "$PIDDW" ]
+then
+echo
+else
 echo;echo;
-echo "Please standby"
-echo "The Pat Menu will open in a new window in just a moment"
+echo "It looks like the ARDOP Modem is running"
+echo "Stop all modems and try again."
+sleep 5
+exit 0
+fi
+
+echo;echo;
+echo "Please standby while direwolf starts"
 echo;echo
 sudo killall direwolf kissattach > /dev/null 2>&1
 sleep 1
@@ -65,7 +77,10 @@ SETRIG
 fi
 
 #start direwolf
-/usr/local/bin/$DIREWOLF &
+/usr/local/bin/$DIREWOLF </dev/null &>/dev/null &
+#disown -a
+
+echo "Almost Done"
 
 sleep 5
 
@@ -73,10 +88,27 @@ sleep 5
 sudo /usr/sbin/kissattach /tmp/kisstnc wl2k
 sudo kissparms -c 1 -p wl2k
 echo;echo;echo;
-echo "#################################################"
-echo "#    Leave this window open while you make      #"
-echo "#    your packet connection.                    #"
-echo "#    Closing this window will stop direwolf     #"
-echo "#    and your packet connection will not work   #"
-echo "#################################################"
+
+#verify direwolf has started
+PIDDW=$(pidof direwolf)
+if [ -z "$PIDDW" ]
+then
+echo "Direwolf failed to start"
+sleep 5
+else
+echo "Direwolf has started"
+sleep 3
+fi
+exit 0
+
+
+
+
+
+
+
+
+
+
+
 
