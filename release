@@ -17,3 +17,4 @@ Changelog
      add start ARDOP-GUI to autopat
      remove temp files at start of autopat
 0.42 give user info on change log before update
+     add rig control check to auto-pat
