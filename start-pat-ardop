@@ -6,6 +6,20 @@
 
 source $HOME/patmenu/config
 
+#check if direwolf is running
+PIDDW=$(pidof direwolf)
+if [ -z "$PIDDW" ]
+then
+echo
+else
+echo;echo;
+echo "It looks like the 2M/440 Modem is running"
+echo "Stop all modems and try again."
+sleep 5
+exit 0
+fi
+
+clear;echo;echo;echo
 echo "stand by while the modem starts"
 
 SETRIG () {
@@ -48,7 +62,32 @@ SETRIG
 fi
 
 #Start ARDOP_GUI
-$ARDOPGUI &
+$ARDOPGUI </dev/null &>/dev/null &
 
 #start modem
-$ARDOP
+$ARDOP </dev/null &>/dev/null &
+
+
+#verify that piardopc is running
+PIDPIC=$(pidof piardopc)
+if [ -z "$PIDPIC" ]
+then
+echo;echo
+echo "The modem didn't start"
+sleep 3
+else
+echo;echo
+echo "The modem has started"
+sleep 3
+fi
+
+
+
+
+
+
+
+
+
+
+
