@@ -2,7 +2,18 @@
 
 #script to setup patmenu system after downloaded
 
-#20191117
+#20191117 KM4ACK
+
+#set notepad editor based on release
+VERSION=$(cat /etc/os-release | grep VERSION_ID | sed 's/VERSION_ID="//' | sed 's/"//')
+echo $VERSION
+if [ $VERSION == '9' ]
+then
+EDITOR=leafpad
+elif [ $VERSION == '10' ]
+then
+EDITOR=mousepad
+fi
 
 cd $HOME/patmenu
 
@@ -46,4 +57,4 @@ echo "#      click the icon and choose        #"
 echo "#      "execute in terminal"            #"
 echo "#########################################"
 
-leafpad $HOME/patmenu/readme &
+$EDITOR $HOME/patmenu/readme &
