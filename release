@@ -20,3 +20,4 @@ Changelog
      add rig control check to auto-pat
 0.43 start modems in backgound     
      verify other modem not running before starting a new modem
+     stop ardop_gui when stopping modems
