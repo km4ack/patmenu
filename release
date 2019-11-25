@@ -1,6 +1,6 @@
 This file is used by the update script to check and make sure that the latest version of pat menu is installed on the system.
 
-release=0.42
+release=0.43
 
 
 Changelog
@@ -18,3 +18,5 @@ Changelog
      remove temp files at start of autopat
 0.42 give user info on change log before update
      add rig control check to auto-pat
+0.43 start modems in backgound     
+     verify other modem not running before starting a new modem
