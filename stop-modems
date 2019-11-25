@@ -4,7 +4,7 @@
 
 #stop all modems that might be running
 
-sudo killall direwolf piardopc kissattach > /dev/null 2>&1
+sudo killall direwolf piardopc kissattach piARDOP_GUI > /dev/null 2>&1
 
 echo;echo
 echo "All modems have been stopped"
