@@ -56,12 +56,14 @@ do
 	    MAINMENU
             ;;
         "Start ARDOP")
-            lxterminal -e $HOME/patmenu/start-pat-ardop
-	    $HOME/patmenu/patmenu-new
+            #lxterminal -e $HOME/patmenu/start-pat-ardop
+	    #$HOME/patmenu/patmenu-new
+	    $HOME/patmenu/start-pat-ardop
+	    MAINMENU
             ;;
         "Start Packet")
             $HOME/patmenu/start-pat2m
-	    lxterminal -e $HOME/patmenu/patmenu-new
+	    MAINMENU
             ;;
        "Find Ardop")
             FINDARDOP
