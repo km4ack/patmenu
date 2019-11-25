@@ -1,6 +1,6 @@
 This file is used by the update script to check and make sure that the latest version of pat menu is installed on the system.
 
-release=0.41
+release=0.42
 
 
 Changelog
@@ -16,3 +16,4 @@ Changelog
 0.41 add start ARDOP-GUI to start ardop
      add start ARDOP-GUI to autopat
      remove temp files at start of autopat
+0.42 give user info on change log before update
