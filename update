@@ -22,6 +22,12 @@ if (( $(echo "$LATEST $CURRENT" | awk '{print ($1 > $2)}') ))
 then
 clear
 echo "Pat-Menu needs to be updated"
+echo
+echo "Here's the change log"
+cat latest | tail
+echo;echo
+echo "Current installed version is "$CURRENT
+echo
 echo "Would you like to update now? y/n"
 read ANSWER
   if [ $ANSWER == 'y' ]
