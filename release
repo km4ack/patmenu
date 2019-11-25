@@ -21,3 +21,4 @@ Changelog
 0.43 start modems in backgound     
      verify other modem not running before starting a new modem
      stop ardop_gui when stopping modems
+     fix issue #17-choose correct text editor based on version
