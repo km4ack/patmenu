@@ -6,6 +6,15 @@
 
 source $HOME/patmenu/config
 
+if [ $RIGCONTROL == 'no' ]
+then
+echo;echo
+echo "Rig contol needed for this script to work"
+echo "Please configure rig control and try again"
+sleep 5
+exit 0
+fi
+
 #clear any temp files from previous runs that might exist
 rm -rf $HOME/tempardop > /dev/null
 
