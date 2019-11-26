@@ -1,0 +1,70 @@
+#!/bin/bash
+
+#this script will add the getardoplist script
+#to cron. It can be used for the initial setup
+#or to update the time cron runs getardoplist
+#20191126 KM4ACK
+
+FILE=$HOME/patmenu/temp.txt
+FILE2=$HOME/patmenu/cronbkup.txt
+
+clear;echo;echo
+echo "This script is used to set the time"
+echo "that the ARDOP gateway list will be downloaded"
+echo "automatically. This keeps the list current."
+echo;echo
+read -n 1 -s -r -p "Press any key to continue"
+
+clear;echo;echo
+echo "Enter the time you would like to download the list"
+echo "Please use 24hr format and enter 2 digits"
+echo "Enter just the hour for the first question"
+echo "and the minutes for the second question"
+echo;echo
+
+TIME () {
+read -p "What hour would you like to get the new gateway list? " HOUR
+read -p "What minute would you like to get the new gateway list? " MIN
+}
+
+TIME
+
+if [[ ${#HOUR} < 2 ]] 
+then
+echo;echo
+echo "Please use 2 digits for the hour. For 1AM use 01. For 1pm use 13"
+TIME
+fi
+
+if [[ ${#MIN} < 2 ]]
+then 
+echo;echo;
+echo "Please use 2 digits for the minutes. For 1 minute after"
+echo "the hour use 01"
+TIME
+fi
+
+crontab -l | grep ardoplist > $FILE
+crontab -l > $FILE2
+
+VAR=$(cat $FILE | grep getardoplist | sed 's/\*//g')
+
+if [ -z "$VAR" ]
+then 
+echo $MIN" "$HOUR" * * * $HOME/patmenu/getardoplist" >> $FILE2
+else
+sed -i '/getardoplist/d' $FILE2
+echo $MIN" "$HOUR" * * * $HOME/patmenu/getardoplist" >> $FILE2
+fi
+
+crontab $FILE2
+
+echo;echo
+echo "Your crontab has been updated. The gateway list"
+echo "will be downloaded daily at "$HOUR":"$MIN" hours"
+echo "This window will close in 5 seconds"
+sleep 5
+
+rm $FILE
+rm $FILE2
+
