@@ -130,7 +130,7 @@ if [[ -z "$firstname" ]]; then
 else
 	if [ $firstname == 'Set-Auto-Download' ]
 	then
-	lxterminal -e $HOME/patmenu/auto-download
+	$HOME/patmenu/auto-download
 	fi
 fi
 
