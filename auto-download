@@ -1,70 +1,39 @@
 #!/bin/bash
 
-#this script will add the getardoplist script
-#to cron. It can be used for the initial setup
-#or to update the time cron runs getardoplist
-#20191126 KM4ACK
+#update cron to download ardop list
+#20191126 km4ack
 
-FILE=$HOME/patmenu/temp.txt
-FILE2=$HOME/patmenu/cronbkup.txt
+FILE=$HOME/patmenu/cronbkup.txt
+crontab -l > $FILE
 
-clear;echo;echo
-echo "This script is used to set the time"
-echo "that the ARDOP gateway list will be downloaded"
-echo "automatically. This keeps the list current."
-echo;echo
-read -n 1 -s -r -p "Press any key to continue"
+HOURS=00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23
+MINS=00,15,30,45
 
-clear;echo;echo
-echo "Enter the time you would like to download the list"
-echo "Please use 24hr format and enter 2 digits"
-echo "Enter just the hour for the first question"
-echo "and the minutes for the second question"
-echo;echo
+TEST=$(yad --center --wrap --width=250 --title="ARDOP Auto Download Setup" \
+--text="Please choose the time you would like to download the gateway list everyday" \
+--button="UPDATE:2" \
+--button="Exit:1" \
+--form --separator="," --item-separator="," \
+--field="Choose the hour":CB $HOURS \
+--field="Choose the minutes":CB $MINS \ 
+)
 
-TIME () {
-read -p "What hour would you like to get the new gateway list? " HOUR
-read -p "What minute would you like to get the new gateway list? " MIN
-}
-
-TIME
-
-if [[ ${#HOUR} < 2 ]] 
-then
-echo;echo
-echo "Please use 2 digits for the hour. For 1AM use 01. For 1pm use 13"
-TIME
-fi
-
-if [[ ${#MIN} < 2 ]]
-then 
-echo;echo;
-echo "Please use 2 digits for the minutes. For 1 minute after"
-echo "the hour use 01"
-TIME
-fi
-
-crontab -l | grep ardoplist > $FILE
-crontab -l > $FILE2
-
-VAR=$(cat $FILE | grep getardoplist | sed 's/\*//g')
-
-if [ -z "$VAR" ]
-then 
-echo $MIN" "$HOUR" * * * $HOME/patmenu/getardoplist" >> $FILE2
-else
-sed -i '/getardoplist/d' $FILE2
-echo $MIN" "$HOUR" * * * $HOME/patmenu/getardoplist" >> $FILE2
-fi
-
-crontab $FILE2
-
+rc=$?
+if [[ $rc -eq 2 ]]; then
+echo "Updating Cron"
+HOUR=$(echo $TEST | awk -F ',' '{print $1}')
+MIN=$(echo $TEST | awk -F ',' '{print $2}')
+sed -i '/getardoplist/d' $FILE
+echo $MIN" "$HOUR" * * * $HOME/patmenu/getardoplist" >> $FILE
+crontab $FILE
 echo;echo
 echo "Your crontab has been updated. The gateway list"
 echo "will be downloaded daily at "$HOUR":"$MIN" hours"
-echo "This window will close in 5 seconds"
 sleep 5
+elif [[ $rc -eq 1 ]]; then
+echo "BYE"
+exit 0
+fi
 
-rm $FILE
-rm $FILE2
+
 
