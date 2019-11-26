@@ -1,6 +1,6 @@
 This file is used by the update script to check and make sure that the latest version of pat menu is installed on the system.
 
-release=0.43
+release=0.44
 
 
 Changelog
@@ -22,3 +22,5 @@ Changelog
      verify other modem not running before starting a new modem
      stop ardop_gui when stopping modems
      fix issue #17-choose correct text editor based on version
+0.44 add set-auto-update to findardop script
+     add new script auto-download called from findardop
