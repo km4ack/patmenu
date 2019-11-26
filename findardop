@@ -85,7 +85,7 @@ printf "\033[1;31mFor Best View, Maximize This Screen\033[0m\n"
 echo
 echo Set the grid to be searched. Refer to the map if needed.
 echo
-firstnames='Set-Grid View-Map Download-List Quit'
+firstnames='Set-Grid View-Map Download-List Set-Auto-Download Quit'
 PS3='Enter an Option Number: '
 select firstname in $firstnames
 do
@@ -122,6 +122,15 @@ else
 	printf "\033[1;31mGrid to be searched is $lett\033[0m\n"
 	echo
 	break
+	fi
+fi
+
+if [[ -z "$firstname" ]]; then
+   echo
+else
+	if [ $firstname == 'Set-Auto-Download' ]
+	then
+	lxterminal -e $HOME/patmenu/auto-download
 	fi
 fi
 
