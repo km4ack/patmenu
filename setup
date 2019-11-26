@@ -17,7 +17,7 @@ fi
 
 cd $HOME/patmenu
 
-chmod +x autopat catalog findardop getardoplist patlogin patmenu-new start-pat2m start-pat-ardop stop-modems uninstall update
+chmod +x autopat catalog findardop getardoplist patlogin patmenu-new start-pat2m start-pat-ardop stop-modems uninstall update auto-download
 
 
 #check if evince is installed
