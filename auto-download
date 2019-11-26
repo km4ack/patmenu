@@ -26,10 +26,11 @@ MIN=$(echo $TEST | awk -F ',' '{print $2}')
 sed -i '/getardoplist/d' $FILE
 echo $MIN" "$HOUR" * * * $HOME/patmenu/getardoplist" >> $FILE
 crontab $FILE
-echo;echo
+echo
 echo "Your crontab has been updated. The gateway list"
 echo "will be downloaded daily at "$HOUR":"$MIN" hours"
 sleep 5
+rm $FILE
 elif [[ $rc -eq 1 ]]; then
 echo "BYE"
 exit 0
