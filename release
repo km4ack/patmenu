@@ -24,5 +24,5 @@ Changelog
      fix issue #17-choose correct text editor based on version
 0.44 add set-auto-update to findardop script
      add new script auto-download called from findardop
-     add YAD install to setup script
-    
+     add YAD install to setup script    
+0.45 sort getardoplist by distance    
