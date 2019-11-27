@@ -67,14 +67,14 @@ echo "List Last Downloaded $(date)" >> $TWENTY
 echo "List Last Downloaded $(date)" >> $THIRTY
 
 #download list to individual files.
-pat rmslist --mode ardop --force-download >> $FILE
+pat rmslist -s --mode ardop --force-download >> $FILE
 
-pat rmslist --band 80m --mode ardop --force-download >> $EIGHTY
+pat rmslist -s --band 80m --mode ardop --force-download >> $EIGHTY
 
-pat rmslist --band 40m --mode ardop --force-download >> $FORTY
+pat rmslist -s --band 40m --mode ardop --force-download >> $FORTY
 
-pat rmslist --band 20m --mode ardop --force-download >> $TWENTY
+pat rmslist -s --band 20m --mode ardop --force-download >> $TWENTY
 
-pat rmslist --band 30m --mode ardop --force-download >> $THIRTY
+pat rmslist -s --band 30m --mode ardop --force-download >> $THIRTY
 echo
 echo All lists successfully downloaded
