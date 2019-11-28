@@ -45,7 +45,6 @@ $HOME/patmenu/getardoplist
 fi
 
 #create symlink on desktop
-
 #remove old style symlink
 SYM=$(ls $HOME/Desktop/ | grep Pat-Menu)
 if [ -z "$SYM" ]
@@ -54,7 +53,7 @@ echo
 else
 rm $HOME/Desktop/Pat-Menu
 fi
-
+RELEASE=$(cat $HOME/patmenu/release | grep release | sed 's/release=//')
 #check if new link already exists & create if needed
 NEWSYM=$(ls $HOME/Desktop/pat-menu.desktop)
 if [ -z "$NEWSYM" ]
@@ -63,6 +62,7 @@ SC=$HOME/Desktop/pat-menu.desktop
 sudo ln -sf $HOME/patmenu/patmenu-new /usr/local/bin/patmenu
 touch $SC
 echo "[Desktop Entry]" >> $SC
+echo "Version="$RELEASE >> $SC
 echo "Name=Pat Menu" >> $SC
 echo "Comment=Pat Winlink Menu by KM4ACK" >> $SC
 echo "Exec=patmenu" >> $SC
