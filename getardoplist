@@ -8,9 +8,14 @@
 #This script is provided AS IS
 #Feel free to mod for your use
 
+TODAY=$(date)
+
 #path where files are located
 #must match path in findardop script
 MYPATH=$HOME/patmenu/ardop-list/
+
+#my log file
+LOG=$HOME/Documents/mylog.txt
 
 #make directory if it doesn't exist
 mkdir -p $MYPATH
@@ -76,5 +81,20 @@ pat rmslist -s --band 40m --mode ardop --force-download >> $FORTY
 pat rmslist -s --band 20m --mode ardop --force-download >> $TWENTY
 
 pat rmslist -s --band 30m --mode ardop --force-download >> $THIRTY
-echo
-echo All lists successfully downloaded
+
+if [ -f "$FILE" ]
+then
+echo $TODAY" RMS Gateway list download Success" >> $LOG
+echo;echo "RMS gateway list download success"
+else
+echo $TODAY" RMS Gateway list download FAIL" >> $LOG
+echo;echo "RMS gateway list failed to download"
+fi
+
+
+
+
+
+
+
+
