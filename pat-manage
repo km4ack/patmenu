@@ -1,0 +1,36 @@
+#!/bin/bash
+# Pat manage menu
+#20191129 km4ack
+
+PS3='Please enter your choice: '
+
+
+MAINMENU () {
+clear;echo;echo;echo
+echo "Pat Menu by KM4ACK"
+echo
+options=("Pat Login" "Add Alias" "Delete Alias" "Exit")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "Pat Login")
+            $HOME/patmenu/patlogin
+	    MAINMENU
+            ;;
+        "Add Alias")
+	    $HOME/patmenu/alias-add
+	    MAINMENU
+            ;;
+        "Delete Alias")
+	    $HOME/patmenu/alias-del
+	    MAINMENU
+            ;;
+        "Exit")
+            exit 0
+            ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done
+}
+
+MAINMENU
