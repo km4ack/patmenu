@@ -1,6 +1,6 @@
 This file is used by the update script to check and make sure that the latest version of pat menu is installed on the system.
 
-release=0.45
+release=0.46
 
 
 Changelog
@@ -28,3 +28,7 @@ Changelog
 0.45 sort getardoplist by distance    
      new style desktop link to setup script
      bump version #
+0.46 add last DL to findardop
+     add log file entry to getardoplist
+     update readme file 
+     bump version #	
