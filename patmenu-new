@@ -47,17 +47,15 @@ MAINMENU () {
 clear;echo;echo;echo
 echo "Pat Menu by KM4ACK"
 echo
-options=("Pat Login" "Start ARDOP" "Start Packet" "Find Ardop" "Pat Auto Connect" "Pat Catalog" "Stop Modems" "Update Pat Menu" "Exit")
+options=("Manage Pat" "Start ARDOP" "Start Packet" "Find Ardop" "Pat Auto Connect" "Pat Catalog" "Stop Modems" "Update Pat Menu" "Exit")
 select opt in "${options[@]}"
 do
     case $opt in
-        "Pat Login")
-            $HOME/patmenu/patlogin
+        "Manage Pat")
+            $HOME/patmenu/pat-manage
 	    MAINMENU
             ;;
         "Start ARDOP")
-            #lxterminal -e $HOME/patmenu/start-pat-ardop
-	    #$HOME/patmenu/patmenu-new
 	    $HOME/patmenu/start-pat-ardop
 	    MAINMENU
             ;;
