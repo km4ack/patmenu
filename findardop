@@ -77,9 +77,10 @@ echo '6) Quit'
 echo
 }
 
+LASTDL=$(cat $HOME/patmenu/ardop-list/ardoplist.txt | head -1)
 #Begin First Menu
 echo 
-echo
+echo $LASTDL
 echo
 printf "\033[1;31mFor Best View, Maximize This Screen\033[0m\n"
 echo
