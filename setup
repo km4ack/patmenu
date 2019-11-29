@@ -8,6 +8,10 @@ if ! hash yad 2>/dev/null; then
     sudo apt install -y yad
 fi
 
+if ! hash jq 2>/dev/null; then
+    sudo apt install -y jq
+fi
+
 #set notepad editor based on release
 VERSION=$(cat /etc/os-release | grep VERSION_ID | sed 's/VERSION_ID="//' | sed 's/"//')
 echo $VERSION
@@ -21,7 +25,7 @@ fi
 
 cd $HOME/patmenu
 
-chmod +x autopat catalog findardop getardoplist patlogin patmenu-new start-pat2m start-pat-ardop stop-modems uninstall update auto-download
+chmod +x autopat catalog findardop getardoplist patlogin patmenu-new start-pat2m start-pat-ardop stop-modems uninstall update auto-download alias-add alias-del
 
 
 #check if evince is installed
