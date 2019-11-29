@@ -1,6 +1,6 @@
 This file is used by the update script to check and make sure that the latest version of pat menu is installed on the system.
 
-release=0.46
+release=0.47
 
 
 Changelog
@@ -31,4 +31,10 @@ Changelog
 0.46 add last DL to findardop
      add log file entry to getardoplist
      update readme file 
+     bump version #
+0.47 add alias-add script
+     add alias-del script
+     add check/install jq to setup script (needed for new alias scripts)
+     add new pat manage menu script
+     update main menu to include pat manage script
      bump version #	
