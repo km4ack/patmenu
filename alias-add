@@ -1,0 +1,53 @@
+#!/bin/bash
+
+#add alias to pat configure file
+#20191129
+
+LIST=$HOME/patmenu/ardop-list
+CONFIG=$HOME/.wl2k/config.json
+TEMP=$HOME/patmenu/tempalias.txt
+TODAY=$(date +%Y%m%d)
+WHO=$(whoami)
+
+
+#backup config file
+cp $CONFIG $CONFIG.$TODAY.bkup
+
+clear;echo;echo;echo "Use this section to search for a new station to"
+echo "add as an alias to your pat GUI"
+echo;echo
+
+read -p "What band would you like to search? 20,30,40,80 " BAND
+
+FILE=$LIST/$BAND"mardoplist.txt"
+
+read -p "What call sign would you like to search for? " CALL
+
+RESULT=$(cat $FILE | grep -i $CALL)
+
+if [ -z "$RESULT" ]
+then 
+echo;echo;echo "Sorry, nothing matches your search"
+sleep 3
+exit 0
+else
+echo;echo "Here are the results of you search"
+echo $RESULT
+echo;echo;read -p "Would you like to add this station to your alias list? y/n " ANS
+
+if [ $ANS == 'y' ] || [ $ANS == 'Y' ]
+then
+NAME=$(echo $RESULT | awk '{ print $1 }')
+SC=$(echo $RESULT | awk '{ print $11 }')
+jq '.connect_aliases += {'\""$NAME"\"' : '\"$SC\"'}' $CONFIG > $TEMP
+cp $TEMP $CONFIG
+rm $TEMP
+sudo killall pat
+sudo systemctl start pat@$WHO
+echo "Your alias list has been updated"
+else 
+echo;echo; "Nothing was modded"
+sleep 2
+exit 0
+fi
+fi
