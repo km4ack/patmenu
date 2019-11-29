@@ -20,16 +20,15 @@ In this case you may want to change it to "direwolf -p -t 0" which will start di
 the flashing text.
 
 4. Find ARDOP
-This will aid in locating ardop gateways to connect with. The list can be automatically update each day by adding 
-the following to your cron jobs.
-00 11 * * * $HOME/patmenu/getardoplist
-This would update the list everyday at 11AM.
+This will aid in locating ardop gateways to connect with. The list can be automatically updated each day at a time you by
+specify by running the "set-auto-download" option in the findardop section of the menu.
 
 5. Pat Auto Connect
-This is a script that will automatically try to connect with ALL winlink gateways at distances you specify. 
+This will automatically try to connect with ALL winlink gateways at distances you specify. 
 You must set the band, & max distance. The minimum distance may be set or left blank. After setting the variables, 
 the script will attempt to connect to ALL gateways that meet your criteria. It will continue until it completes a 
-connection at which time it will stop OR it will exaust the list trying to complete a connection.
+connection at which time it will stop OR it will exaust the list trying to complete a connection. Should you need
+to stop the connection attempts before they are finished, press ctrl+c to break out.
 
 6. Pat Catalog
 This script will aid in posting catalog requests to your outbox. Several catagories of requests are available such as 
@@ -39,7 +38,7 @@ requested will be delivered to your inbox. GPS weather is only available if you 
 it is a very minimal catalog. Additions may be made in the future depending on demand.
 
 7. Stop Modems
-This is used to stop modems that you aren't using. This option will stop direwolf, kissattach, and piardopc. It should also 
+This is used to stop modems that you aren't using. This option will stop direwolf, kissattach, piARDOP_GUI, and piardopc. It should also 
 be used before moving from Packet connections to ARDOP connections and vice versa. If in doubt or you are having issues with 
 a modem starting, try using this option and then try again to start the modem you with to use. 
 
