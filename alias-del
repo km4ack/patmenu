@@ -1,0 +1,57 @@
+#!/bin/bash
+
+#remove alias from list
+#20191130 km4ack
+
+PATCONFIG=$HOME/.wl2k/config.json
+OUTFILE=$HOME/patmenu/currentlist.txt
+TEMP=$HOME/patmenu/tempconfig.txt
+WHO=$(whoami)
+
+jq .connect_aliases $PATCONFIG | sed '/^}/d' | sed '/^{/d' | sed 's/^ *//g' > $OUTFILE
+clear;echo;echo
+echo "Here is your current alias list"
+echo;echo
+while read LIST
+do
+echo $LIST
+done < $OUTFILE
+
+echo;echo;read -p "Which call would you like to remove " CALL
+
+RCALL=$(cat $OUTFILE | grep -i $CALL | awk '{ print $1 }' | sed 's/://')
+
+if [ -z "$RCALL" ]
+then
+echo "Call not found"
+sleep 2
+exit 0
+fi
+
+echo;read -p "Remove "$RCALL" from your list? y/n " ANS
+
+if [ $ANS = 'y' ] || [ $ANS = "Y" ]
+then
+jq 'del(.connect_aliases.'$RCALL')' $PATCONFIG > $TEMP
+cp $TEMP $PATCONFIG
+rm $TEMP $OUTFILE
+sudo killall pat
+sudo systemctl start pat@$WHO
+echo "You list has been updated"
+sleep 2
+else
+echo "Nothing removed"
+sleep 2
+exit 0
+fi
+
+
+
+
+
+
+
+
+
+
+
