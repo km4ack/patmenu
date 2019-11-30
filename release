@@ -39,4 +39,8 @@ Changelog
      update main menu to include pat manage script
      bump version #
 0.48 remove alias-del until major bug can be resolved
-	
+     bump version #
+0.49 fix bug and add alias-del
+     update pat-manage
+     add band/freq to new alias when added from pat manage
+     bump version #	
