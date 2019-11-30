@@ -76,6 +76,8 @@ echo "Type=Application" >> $SC
 echo "Categories=AudioVideo;HamRadio;" >> $SC
 fi
 
+chmod +x $SC
+
 
 #remove a few files
 rm $HOME/patmenu/README.md
