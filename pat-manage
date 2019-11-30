@@ -22,7 +22,7 @@ do
 	    MAINMENU
             ;;
         "Delete Alias")
-	    $HOME/patmenu/alias-add
+	    $HOME/patmenu/alias-del
 	    MAINMENU
             ;;
         "Exit")
