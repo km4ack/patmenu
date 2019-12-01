@@ -1,6 +1,6 @@
 This file is used by the update script to check and make sure that the latest version of pat menu is installed on the system.
 
-release=0.50
+release=0.51
 
 
 Changelog
@@ -48,4 +48,11 @@ Changelog
      make desktop shortcut executable
      add rigcontrol check to alias-add for right shortcut
      complete re write of findardop that includes add alias shortcuts
-
+     bump version #
+0.51 Fix variable in autopat
+     add packet list download to getardoplist
+     add script alias-add-packet
+     add script restore-config
+     update pat-manage menu
+     update setup script
+     bump version #
