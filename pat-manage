@@ -9,7 +9,7 @@ MAINMENU () {
 clear;echo;echo;echo
 echo "Pat Menu by KM4ACK"
 echo
-options=("Pat Login" "Add Alias" "Delete Alias" "Exit")
+options=("Pat Login" "Add Alias ARDOP" "Add Alias Packet" "Delete Alias" "Restore Pat Config" "Exit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -17,12 +17,20 @@ do
             $HOME/patmenu/patlogin
 	    MAINMENU
             ;;
-        "Add Alias")
+        "Add Alias ARDOP")
 	    $HOME/patmenu/alias-add
+	    MAINMENU
+            ;;
+        "Add Alias Packet")
+	    $HOME/patmenu/alias-add-packet
 	    MAINMENU
             ;;
         "Delete Alias")
 	    $HOME/patmenu/alias-del
+	    MAINMENU
+            ;;
+        "Restore Pat Config")
+	    $HOME/patmenu/restore-config
 	    MAINMENU
             ;;
         "Exit")
