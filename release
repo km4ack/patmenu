@@ -1,6 +1,6 @@
 This file is used by the update script to check and make sure that the latest version of pat menu is installed on the system.
 
-release=0.49
+release=0.50
 
 
 Changelog
@@ -44,3 +44,8 @@ Changelog
      update pat-manage
      add band/freq to new alias when added from pat manage
      bump version #	
+0.50 add way to exit alias-del
+     make desktop shortcut executable
+     add rigcontrol check to alias-add for right shortcut
+     complete re write of findardop that includes add alias shortcuts
+
