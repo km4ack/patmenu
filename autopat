@@ -141,7 +141,7 @@ RESULTS=$(echo $?)
 if [ $RESULTS = "0" ]
 then
 echo "A connection was made"
-echo $DATE" "$Call" Success with autopat" >> $LOG
+echo $DATE" "$CALL" Success with autopat" >> $LOG
 sudo killall piardopc piARDOP_GUI
 exit 0
 fi
