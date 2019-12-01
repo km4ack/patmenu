@@ -1,0 +1,63 @@
+#!/bin/bash
+
+#20191201 km4ack
+
+FILE=$HOME/patmenu/ardop-list/packet.txt
+TODAY=$(date +%Y%m%d-%R)
+WHO=$(whoami)
+TEMP=$HOME/patmenu/temppacket.txt
+TEMP1=$HOME/patmenu/templist.txt
+TEMP2=$HOME/patmenu/tempalias.txt
+PATCONFIG=$HOME/.wl2k/config.json
+source $HOME/patmenu/config
+
+#backup config file
+cp $PATCONFIG $PATCONFIG.$TODAY.bkup
+
+cat $FILE | tail -n +5 | grep '[^[:blank:]]' > $TEMP
+clear;echo;echo "75 or less recommended"
+read -p "What is the max distance you wish to look for packet stations? " MAX
+
+echo
+echo "Stand by"
+echo "This takes up to 30 seconds to complete..."
+
+while read LINE
+    do DISTANCE=$(echo $LINE | awk '{ print $3 }')
+	CALL=$(echo $LINE | awk '{ print $1 }')
+	#echo $DISTANCE
+	if [ $DISTANCE -lt "$MAX" ]
+	then
+	echo $LINE | sed 's/packet:/ax25:/' >> $TEMP1
+	fi
+done < $TEMP
+
+clear;echo;echo
+cat $TEMP1
+
+echo;echo;read -p "Which call would you like to add to your alias list? " CALL
+
+NAME=$(cat $TEMP1 | grep -i $CALL | awk '{ print $1 }')
+SC=$(cat $TEMP1 | grep -i $CALL | awk '{ print $11 }')
+
+echo $NAME
+echo $SC
+
+	if [ $RIGCONTROL = 'yes' ]
+	then
+	SC=$(echo $SC)
+	else
+	SC=$(echo $SC | sed 's/[?].*$//')
+	fi
+FREQ=$(echo $SC | sed 's/.*=//')
+jq '.connect_aliases += {'\""$NAME-Packet"\"' : '\"$SC\"'}' $PATCONFIG > $TEMP2
+
+cp $TEMP2 $PATCONFIG
+sudo killall pat
+sudo systemctl start pat@$WHO
+echo "done"
+
+rm $TEMP $TEMP1 $TEMP2
+
+
+
