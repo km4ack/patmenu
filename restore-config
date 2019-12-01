@@ -1,0 +1,35 @@
+#!/bin/bash
+
+#script to restore a pat config file if something goes wrong
+#20191201 km4ack
+
+PATFILES=$HOME/.wl2k/
+TEMP=$HOME/patmenu/tempbackuplist
+
+clear;echo;echo "Here is a list of date-times of your backup"
+
+echo
+ls $PATFILES*.bkup | awk -F'/' '{ print $5 }' | awk -F'.' '{ print $3 }'
+echo;echo;
+echo "Please enter full file name (example: 20191201-07:12)"
+read -p "of the one you wish to restore? " FILE
+echo;read -p "Restore "$FILE" ? y/n " ANS
+
+if [ $ANS = 'y' ] || [ $ANS = 'Y' ]
+then
+BKUP=$(ls $PATFILES | grep $FILE)
+	if [ -z "$BKUP" ]
+	then
+	echo "Backup file Date/Time not found"
+	echo "Please check your spelling and try again"
+	exit 0
+	fi
+cp $PATFILES$BKUP $PATFILES'config.json'
+echo "restore complete"
+sleep 2
+else
+exit 0
+fi
+
+
+rm $TEMP
