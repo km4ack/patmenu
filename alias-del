@@ -17,7 +17,12 @@ do
 echo $LIST
 done < $OUTFILE
 
-echo;echo;read -p "Which call would you like to remove " CALL
+echo;echo;read -p "Which call would you like to remove ? 'none' to exit " CALL
+
+if [ $CALL = 'none' ]
+then 
+exit 0
+fi
 
 RCALL=$(cat $OUTFILE | grep -i $CALL | awk '{ print $1 }' | sed 's/://')
 
