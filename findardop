@@ -1,293 +1,209 @@
 #!/bin/bash
-#A script to help locate winlink gateways
-#ARDOP files must be download first using getardoplist
-#getardoplist should be a daily cron job
-#so the lists stay current. 
-#See notes at top of getardoplist
-#This script is provided AS IS
-#Feel free to mod to suit your needs
-#20181217 km4ack
+
+#20191130 km4ack
+
+OUTFILE=$HOME/patmenu/tempardoplist.txt
+CONFIG=$HOME/.wl2k/config.json
+TEMP=$HOME/patmenu/tempconfig.txt
+TODAY=$(date +%Y%m%d-%R)
+WHO=$(whoami)
+LASTDL=$(cat $HOME/patmenu/ardop-list/ardoplist.txt | head -1)
 
 source $HOME/patmenu/config
 
-#Path to ARDOP files.
-#Path below and path in getardoplist MUST MATCH
-MYPATH=$HOME/patmenu/ardop-list/
-
-#Path for getardoplist script
-SCRIPT_PATH=$HOME/patmenu/getardoplist
-
-#path for map pdf
-if [ $MAP == 'usa' ]
+if [ $MAP = "usa" ]
 then
-MAP_PATH=$HOME/patmenu/grid-map.pdf
+MAP=$HOME/patmenu/grid-map.pdf
 else
-MAP_PATH=$HOME/patmenu/worldgridmap.pdf
+MAP=$HOME/patmenu/worldgridmap.pdf
 fi
 
-#Select the pdf app on your system
-#default is evince
-#you can also use xpdf if you have it installed
-#PDF_APP=xpdf
-PDF_APP='evince -w'
+PS3="Please choose an option "
 
-
-#Read date of last download in each file
-if	[ -f $MYPATH'ardoplist.txt' ]; then
-DL20=$(head -n 1 $MYPATH'20mardoplist.txt')
-DL30=$(head -n 1 $MYPATH'30mardoplist.txt')
-DL40=$(head -n 1 $MYPATH'40mardoplist.txt')
-DL80=$(head -n 1 $MYPATH'80mardoplist.txt')
-fi
-clear
-#Check that files have been downloaded before
-if      [ -f $MYPATH'ardoplist.txt' ]; then
-        echo
-else
-	$HOME/patmenu/getardoplist
-	#echo
-	#echo
-	#echo
-	#echo
-	#printf "\033[1;31mPLEASE download files before proceeding\033[0m\n"
-	#printf "\033[1;31mType getardoplist to download the files\033[0m\n"
-	#echo
-	#echo 
-	#exit
-fi
-
-
-#Header for results
 print_header () {
 echo 'Call        Grid   Dist    Azmuth               Dial Freq      Center Freq  Shortcut'
 echo '======================================================================================================='
 }
 
-#menu to print at bottom of results page
-print_menu2 () {
-echo
-echo 'Choose which band you wish to use'
-echo
-echo '1) Change Grid'
-echo '2) 40M'
-echo '3) 80M'
-echo '4) 30M'
-echo '5) 20M'
-echo '6) Quit'
-echo
+MENU3 () {
+echo;echo
+MENU=("Change Band/Grid" "Add to Alias" "Quit")
+
+select ITEM in "${MENU[@]}"
+do
+	case $ITEM in
+	"Change Band/Grid")
+	clear
+	MENU2
+		;;
+	"Add to Alias")
+	read -p "Which call would you like to add? " CALL
+	ADDALIAS
+		;;
+	"Quit")
+	rm $OUTFILE
+	exit 0
+		;;
+        *) echo "invalid option $REPLY";;
+	esac
+done
 }
 
-LASTDL=$(cat $HOME/patmenu/ardop-list/ardoplist.txt | head -1)
-#Begin First Menu
-echo 
-echo $LASTDL
-echo
-printf "\033[1;31mFor Best View, Maximize This Screen\033[0m\n"
-echo
-echo Set the grid to be searched. Refer to the map if needed.
-echo
-firstnames='Set-Grid View-Map Download-List Set-Auto-Download Quit'
-PS3='Enter an Option Number: '
-select firstname in $firstnames
+MENU2 () {
+MENU=("Change Grid" "20M" "30M" "40M" "80M" "Main Menu")
+ARDOPLIST=$HOME/patmenu/ardop-list
+
+echo;echo
+printf "\033[1;31mGrid to be searched is $GRID\033[0m\n"
+echo;echo "Now choose the band to search"
+
+select ITEM in "${MENU[@]}"
 do
-
-if [[ -z "$firstname" ]]; then
-   echo 
-   printf "\033[1;31mPLEASE SELECT A NUMBER BETWEEN 1 & 4\033[0m\n"
-fi
-
-if [[ -z "$firstname" ]]; then
-   echo
-else
-	if [ $firstname == 'Quit' ]
-	then
-	exit
-	fi
-fi
-
-if [[ -z "$firstname" ]]; then
-   echo
-else
-	if [ $firstname == 'Set-Grid' ]
-	then
-	echo
-	echo 
-	read -p 'Please enter the first two letters of the grid to be searched: ' lett
+	case $ITEM in
+	"Change Grid")
+	read -p "Enter new grid to search " GRID
+	GRID=$(echo "${GRID^^}")
 	clear
-		if [[ -z "$lett" ]]; then
-		echo
-		echo "YOU SHOULD SET THE GRID"
-		echo "OR THE SEARCH WON'T WORK"
-		fi
-	echo
-	printf "\033[1;31mGrid to be searched is $lett\033[0m\n"
-	echo
-	break
-	fi
-fi
+	MENU2
+		;;
+	"20M")
+	clear
+	BAND=20
+	FILE=$ARDOPLIST/20mardoplist.txt
+	echo;echo;
+	print_header
+	cat $FILE | egrep -i $GRID[[:digit:]]{2} | tee "$OUTFILE"
+	MENU3
+		;;
+	"30M")
+	clear
+	BAND=30
+	FILE=$ARDOPLIST/30mardoplist.txt
+	echo;echo;
+	print_header
+	cat $FILE | egrep -i $GRID[[:digit:]]{2} | tee "$OUTFILE"
+	MENU3
+		;;
+	"40M")
+	clear
+	BAND=40
+	FILE=$ARDOPLIST/40mardoplist.txt
+	echo;echo;
+	print_header
+	cat $FILE | egrep -i $GRID[[:digit:]]{2} | tee "$OUTFILE"
+	MENU3
+		;;
+	"80M")
+	clear
+	BAND=80
+	FILE=$ARDOPLIST/80mardoplist.txt
+	echo;echo;
+	print_header
+	cat $FILE | egrep -i $GRID[[:digit:]]{2} | tee "$OUTFILE"
+	MENU3
+		;;
+	"Main Menu")
+	MAIN
+		;;
+        *) echo "invalid option $REPLY";;
+	esac
+done
+}
 
-if [[ -z "$firstname" ]]; then
-   echo
-else
-	if [ $firstname == 'Set-Auto-Download' ]
-	then
+
+MAIN () {
+clear;echo;echo "Find Ardop by KM4ACK";echo
+echo $LASTDL;echo
+printf "\033[1;31mFor Best View, Maximize This Screen\033[0m\n";echo
+echo "Set the grid to be searched. Refer to the map if needed.";echo
+MENU=("Set Grid" "View Map" "Download List" "Set Auto Download" "Quit")
+
+select ITEM in "${MENU[@]}"
+do
+	case $ITEM in
+	"Set Grid")
+	read -p "Please enter first 2 letters of grid to search " GRID
+	GRID=$(echo "${GRID^^}")
+	echo;echo;clear
+	MENU2
+		;;
+	"View Map")
+	echo "Opening Map"
+	evince -w $MAP
+	MAIN
+		;;
+	"Download List")
+	$HOME/patmenu/getardoplist
+	LASTDL=$(cat $HOME/patmenu/ardop-list/ardoplist.txt | head -1)
+	MAIN
+		;;
+	"Set Auto Download")
 	$HOME/patmenu/auto-download
-	fi
-fi
+	MAIN
+		;;
+	"Quit")
+	exit 0
+		;;
+        *) echo "invalid option $REPLY";;
+	esac
+done
 
-if [[ -z "$firstname" ]]; then
-   echo 
+}
+
+ADDALIAS () {
+
+cp $CONFIG $CONFIG.$TODAY.bkup
+
+RESULT=$(cat $OUTFILE | grep -i $CALL)
+
+if [ -z "$RESULT" ]
+then 
+echo;echo;echo "Sorry, nothing matches your search"
 else
-	if [ $firstname == 'View-Map' ]
+echo;echo $RESULT
+echo;echo;read -p "Would you like to add this station to your alias list? y/n " ANS
+
+	if [ $ANS == 'y' ] || [ $ANS == 'Y' ]
 	then
-	$PDF_APP $MAP_PATH
-	fi
-fi
-#############################################################
-if [[ -z "$firstname" ]]; then
-	echo
-else
-	if [ $firstname == 'Download-List' ] #Downloads new ardop list
-	then
-	echo "Please wait while we check for an internet connection"
-	echo "This may take up to 30 seconds"
-	wget -q --tries=5 --timeout=20 --spider http://google.com #checks internet connection
-		if [[ $? -eq 0 ]]; then #0 indicates internet connection
-		echo
-		echo "Connected"
-		echo
-		echo "Please wait....."
-		echo "This may take several minutes to complete"
-		echo "Depending on your internet speed"
-		OUTPUT=$("$SCRIPT_PATH") #Calls getardoplist script
-		echo
-		echo "Done"
-		echo
-		#get new download times
-		DL20=$(head -n 1 $MYPATH'20mardoplist.txt')
-		DL30=$(head -n 1 $MYPATH'30mardoplist.txt')
-		DL40=$(head -n 1 $MYPATH'40mardoplist.txt')
-		DL80=$(head -n 1 $MYPATH'80mardoplist.txt')
+	NAME=$(echo $RESULT | awk '{ print $1 }')
+		if [ $RIGCONTROL = 'yes' ]
+		then
+		SC=$(echo $RESULT | awk '{ print $11 }')
 		else
-		echo
-		echo "YOU ARE NOT ONLINE"
-		echo "PLEASE CONNECT AND TRY AGAIN"
-		sleep 5
-		echo
+		SC=$(echo $RESULT | awk '{ print $11 }' | sed 's/[?].*$//')
 		fi
-	fi
+	FREQ=$(echo $SC | sed 's/.*=//')
+	jq '.connect_aliases += {'\""$NAME-$BAND"M"-$FREQ"\"' : '\"$SC\"'}' $CONFIG > $TEMP
+	cp $TEMP $CONFIG
+	sudo killall pat
+	sudo systemctl start pat@$WHO
+	echo "Your alias list has been updated"
+	read -p "Would you like to add another? y/n " ANS
+		if [ $ANS == 'y' ] || [ $ANS == 'Y' ]
+		then
+		clear;echo;echo
+		print_header
+		cat $OUTFILE
+		read -p "Which call would you like to add? " CALL
+		ADDALIAS
+		fi
+	rm $TEMP $OUTFILE
+	sleep 2
+	MAIN
+	else 
+	echo;echo; "Nothing was modded"
+	sleep 2
+	MAIN
 fi
-done
-#Begin Second Menu
-echo
-echo Now choose the band you wish to use
-echo
-names='Change-Grid 40M 80M 30M 20M Quit'
+fi
+}
 
-PS3='Enter an Option Number: '
-
-select name in $names
-do
-
-if [[ -z "$name" ]]; then
-   echo 
-   printf "\033[1;31mPLEASE SELECT A NUMBER BETWEEN 1 & 6\033[0m\n"
-fi
-
-
-if [[ -z "$name" ]]; then
-   echo
-else
-	if [ $name == 'Quit' ]
-	then
-	break
-	fi
-fi
-
-#Find and return results of grid search 20M
-if [[ -z "$name" ]]; then
-   echo
-else
-	if [ $name == '20M' ]
-	then
-        FILE=$MYPATH'20mardoplist.txt'
-        clear
-        echo
-        echo
-	echo $DL20
-        print_header
-        cat $FILE | egrep -i $lett[[:digit:]]{2}
-        print_menu2
-	fi
-fi
-#Find and return results of grid search 30M
-if [[ -z "$name" ]]; then
-   echo
-else
-	if [ $name == '30M' ]
-	then
-        FILE=$MYPATH'30mardoplist.txt'
-        clear
-        echo
-        echo
-	echo $DL30
-        print_header
-        cat $FILE | egrep -i $lett[[:digit:]]{2}
-        print_menu2
-	fi
-fi
-#Find and return results of grid search 40M
-if [[ -z "$name" ]]; then
-   echo
-else
-	if [ $name == '40M' ]
-	then
-	FILE=$MYPATH'40mardoplist.txt'
-	clear
-	echo
-	echo
-	echo $DL40
-	print_header
-	cat $FILE | egrep -i $lett[[:digit:]]{2}
-	print_menu2
-	fi
-fi
-#Find and return results of grid search 80M
-if [[ -z "$name" ]]; then
-   echo
-else
-	if [ $name == '80M' ]
-	then
-	FILE=$MYPATH'80mardoplist.txt'
-	clear
-	echo
-	echo
-	echo $DL80
-	print_header
-	cat $FILE | egrep -i $lett[[:digit:]]{2}
-    	print_menu2
-	fi
-fi
-#Give option to change the grid being searched
-if [[ -z "$name" ]]; then
-   echo
-else
-	if [ $name == 'Change-Grid' ]
-	then
-	read -p 'Enter the first two letter of the grid to be searched: ' lett
-	clear
-	if [[ -z "$lett" ]]; then
-        echo
-        echo "YOU SHOULD SET THE GRID"
-        echo "OR THE SEARCH WON'T WORK"
-        fi
-	echo
-	printf "\033[1;31mGrid to be searched is $lett\033[0m\n"
-	echo
-	print_menu2
-	fi
-fi
+MAIN
 
 
-done
-echo Bye
+
+
+
+
+
+
