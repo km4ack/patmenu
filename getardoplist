@@ -26,6 +26,7 @@ EIGHTY=$MYPATH'80mardoplist.txt'
 FORTY=$MYPATH'40mardoplist.txt'
 TWENTY=$MYPATH'20mardoplist.txt'
 THIRTY=$MYPATH'30mardoplist.txt'
+PACKET=$MYPATH'packet.txt'
 
 #check internet connection
 echo "Please wait while we check your internet connection"
@@ -64,12 +65,17 @@ if 	[ -f $TWENTY ]; then
 	rm $TWENTY
 fi
 
+if	[ -f $PACKET ]; then
+	rm $PACKET
+fi
+
 #put date on top line of each file
 echo "List Last Downloaded $(date)" >> $FILE
 echo "List Last Downloaded $(date)" >> $FORTY
 echo "List Last Downloaded $(date)" >> $EIGHTY
 echo "List Last Downloaded $(date)" >> $TWENTY
 echo "List Last Downloaded $(date)" >> $THIRTY
+echo "List Last Downloaded $(date)" >> $PACKET
 
 #download list to individual files.
 pat rmslist -s --mode ardop --force-download >> $FILE
@@ -81,6 +87,8 @@ pat rmslist -s --band 40m --mode ardop --force-download >> $FORTY
 pat rmslist -s --band 20m --mode ardop --force-download >> $TWENTY
 
 pat rmslist -s --band 30m --mode ardop --force-download >> $THIRTY
+
+pat rmslist -s --mode packet --force-download >> $PACKET
 
 if [ -f "$FILE" ]
 then
