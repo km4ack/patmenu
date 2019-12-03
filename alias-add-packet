@@ -11,6 +11,8 @@ TEMP2=$HOME/patmenu/tempalias.txt
 PATCONFIG=$HOME/.wl2k/config.json
 source $HOME/patmenu/config
 
+touch $TEMP1
+
 #backup config file
 cp $PATCONFIG $PATCONFIG.$TODAY.bkup
 
