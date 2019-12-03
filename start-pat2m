@@ -85,7 +85,7 @@ echo "Almost Done"
 sleep 5
 
 #start kissattach
-sudo /usr/sbin/kissattach /tmp/kisstnc wl2k
+$KISS $AXP
 sudo kissparms -c 1 -p wl2k
 echo;echo;echo;
 
