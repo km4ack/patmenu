@@ -6,6 +6,7 @@
 clear
 
 source $HOME/patmenu/config
+TEMP=$HOME/patmenu/temp
 
 #check if piardopc is running
 PIDDW=$(pidof piardopc)
@@ -76,18 +77,37 @@ WHO=$(whoami)
 SETRIG
 fi
 
+#Buster work around
+#check for buster
+BUSTER=$(cat /etc/os-release | grep -i buster)
+if [ -z "$BUSTER" ]
+then
 #start direwolf
 /usr/local/bin/$DIREWOLF </dev/null &>/dev/null &
 #disown -a
+else
+/usr/local/bin/direwolf -p > $TEMP &
+sleep 1
+sudo killall direwolf
+LINK=$(cat $TEMP | grep symlink | awk '{ print $5 }') 
+rm $TEMP
+/usr/local/bin/$DIREWOLF </dev/null &>/dev/null &
+fi
 
 echo "Almost Done"
 
 sleep 5
-
+if [ -z "$BUSTER" ]
+then
 #start kissattach
 $KISS $AXP
 sudo kissparms -c 1 -p wl2k
-echo;echo;echo;
+echo;echo;echo
+else
+sudo /usr/sbin/kissattach $LINK $AXP
+sudo kissparms -c 1 -p wl2k
+echo;echo;echo
+fi
 
 #verify direwolf has started
 PIDDW=$(pidof direwolf)
