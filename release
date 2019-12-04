@@ -1,6 +1,6 @@
 This file is used by the update script to check and make sure that the latest version of pat menu is installed on the system.
 
-release=0.52
+release=0.53
 
 
 Changelog
@@ -60,4 +60,6 @@ Changelog
      revert to old style symlink until issue is resolved with new style
      move kissattach to variable in config file
      update restore-config file
+     bump version #
+0.53 add buster check to start-pat2m
      bump version #
