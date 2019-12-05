@@ -8,7 +8,7 @@ This is still considered BETA code. Things may or may not work for you. It has o
 Please report any bugs/issues with the menu https://github.com/km4ack/Pat-Menu/issues
 
 # Install
-    git clone https://github.com/km4ack/patmenu.git && bash $HOME/patmenu/setup
+    git clone https://github.com/km4ack/patmenu.git $HOME/patmenu && bash $HOME/patmenu/setup
     
 Be sure to update the config file before launching the menu for the first time.
 
