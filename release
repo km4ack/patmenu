@@ -1,6 +1,6 @@
 This file is used by the update script to check and make sure that the latest version of pat menu is installed on the system.
 
-release=0.53
+release=0.54
 
 
 Changelog
@@ -63,3 +63,7 @@ Changelog
      bump version #
 0.53 add buster check to start-pat2m
      bump version #
+0.54 update gpsdata var in catalog. Thanks K4KDR!
+     create changeconf script to deal with multiple config files
+     add menu-mange script for pat menu management
+     update setup script to +x changeconf & menu-manage
