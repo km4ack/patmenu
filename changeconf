@@ -1,0 +1,39 @@
+#!/bin/bash
+
+#change config file for patmenu
+#20191206 km4ack
+
+
+LISTCONFIG () {
+#get config files
+#FILES=$(ls $HOME/patmenu/ | grep config | sed 's/restore-config//') 
+clear;echo;echo
+echo "Here are your config files"
+echo
+ls $HOME/patmenu/ | grep config | sed 's/restore-config//'
+#echo $FILES
+echo;echo
+
+read -p "Which config file would you like to load? " NEWFIG
+
+
+
+#make sure file exists
+if [ -f $HOME/patmenu/$NEWFIG ]
+then
+echo
+else
+echo "Looks like a typo. Please try again"
+sleep 2
+LISTCONFIG
+fi
+
+cp $HOME/patmenu/$NEWFIG $HOME/patmenu/config
+
+sudo killall rigctld > /dev/null 2>&1
+echo "Config file updated"
+
+sleep 2
+}
+
+LISTCONFIG
