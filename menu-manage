@@ -1,0 +1,38 @@
+#!/bin/bash
+# manage Pat menu
+#20191207 km4ack
+
+PS3='Please enter your choice: '
+
+
+MAINMENU () {
+clear;echo;echo;echo
+echo "Manage Pat Menu"
+echo
+options=("Change Config" "Update Pat Menu" "About" "Exit")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "Change Config")
+            $HOME/patmenu/changeconf
+	    MAINMENU
+            ;;
+        "Update Pat Menu")
+	    $HOME/patmenu/update
+	    MAINMENU
+            ;;
+        "About")
+	    echo;echo
+	    cat $HOME/patmenu/release | grep release= | sed 's/release=/Pat Menu by KM4ACK version /'
+	    sleep 3
+	    MAINMENU
+            ;;
+        "Exit")
+            exit 0
+            ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done
+}
+
+MAINMENU
