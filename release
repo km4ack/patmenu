@@ -67,3 +67,4 @@ Changelog
      create changeconf script to deal with multiple config files
      add menu-mange script for pat menu management
      update setup script to +x changeconf & menu-manage
+     bump version #
