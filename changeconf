@@ -13,10 +13,14 @@ echo
 ls $HOME/patmenu/ | grep config | sed 's/restore-config//'
 #echo $FILES
 echo;echo
+echo "Which config file would you like to load?"
+read -p "Or 'exit' to go back to main menu " NEWFIG
 
-read -p "Which config file would you like to load? " NEWFIG
 
-
+if [ $NEWFIG == "exit" ]
+then 
+exit 0
+fi
 
 #make sure file exists
 if [ -f $HOME/patmenu/$NEWFIG ]
@@ -27,6 +31,7 @@ echo "Looks like a typo. Please try again"
 sleep 2
 LISTCONFIG
 fi
+
 
 cp $HOME/patmenu/$NEWFIG $HOME/patmenu/config
 
