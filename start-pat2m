@@ -119,6 +119,10 @@ else
 echo "Direwolf has started"
 sleep 3
 fi
+
+#open pat inbox in browser
+export DISPLAY=:0 && chromium-browser --app=http://127.0.0.1:$PORT > /dev/null 2>&1 &
+
 exit 0
 
 
