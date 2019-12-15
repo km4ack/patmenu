@@ -51,6 +51,9 @@ fi
 #create symlink on desktop
 ln -sf $HOME/patmenu/patmenu-new $HOME/Desktop/Pat-Menu
 
+#create symlink for patmenu
+sudo ln -sf $HOME/patmenu/patmenu-new /usr/local/bin
+
 
 #remove a few files
 rm $HOME/patmenu/README.md
