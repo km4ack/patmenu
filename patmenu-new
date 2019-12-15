@@ -10,20 +10,41 @@ PATAUTO () {
 	echo "Which band would you like to use?"
 	echo "20, 30, 40, or 80"
 	read BAND
+	if [ $BAND = "20" ] || [ $BAND = "30" ] || [ $BAND = "40" ] || [ $BAND = "80" ]
+	then
+	echo
+	else
+	echo "Only 20,30,40, or 80 are available"
+	echo "Please try again"
+	sleep 2
+	PATAUTO
+	fi
 	echo "What is the max distance you wish to try?"
 	read MAX
 	echo "What is the minimum distance you wish to try?"
 	read MIN
-	echo "Please standby"
-		if [ -z $BAND ]
-		then
-		echo "band cannot be blank"
-		sleep 3
-		exit 0
-		elif [ -z $MAX ]
+	echo "You have chosen to use "$BAND"M with a minimum distance of "$MIN
+	echo "and a maximum distance of "$MAX
+	read -p "Is this correct? y/n/exit " ANS
+		if [ $ANS = "exit" ]
 		then 
-		echo "max distance cannot be blank"
-		exit 0
+		MAINMENU
+		elif [ $ANS = "n" ]
+		then
+		PATAUTO
+		elif [ $ANS = "y" ]
+		then
+		echo "Please standby"
+			if [ -z $BAND ]
+			then
+			echo "band cannot be blank"
+			sleep 3
+			exit 0
+			elif [ -z $MAX ]
+			then 
+			echo "max distance cannot be blank"
+			exit 0
+			fi
 		fi
 	$HOME/patmenu/autopat $MAX $BAND $MIN
 	MAINMENU
@@ -47,7 +68,7 @@ MAINMENU () {
 clear;echo;echo;echo
 echo "Pat Menu by KM4ACK"
 echo
-options=("Manage Pat" "Start ARDOP" "Start Packet" "Find Ardop" "Pat Auto Connect" "Pat Catalog" "Stop Modems" "Update Pat Menu" "Exit")
+options=("Manage Pat" "Start ARDOP" "Start Packet" "Find Ardop" "Pat Auto Connect" "Pat Catalog" "Stop Modems" "Manage Pat Menu" "Exit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -76,8 +97,8 @@ do
             $HOME/patmenu/stop-modems
 	    MAINMENU
             ;;
-	"Update Pat Menu")
-            $HOME/patmenu/update
+	"Manage Pat Menu")
+            $HOME/patmenu/menu-manage
 	    MAINMENU
             ;;
         "Exit")
