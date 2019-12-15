@@ -8,6 +8,8 @@ TEMP=$HOME/patmenu/tempconfig.txt
 TODAY=$(date +%Y%m%d-%R)
 WHO=$(whoami)
 LASTDL=$(cat $HOME/patmenu/ardop-list/ardoplist.txt | head -1)
+PDF_APP='evince -w'
+#PDF_APP='qpdfview'
 
 source $HOME/patmenu/config
 
@@ -129,7 +131,7 @@ do
 		;;
 	"View Map")
 	echo "Opening Map"
-	evince -w $MAP
+	$PDF_APP $MAP > /dev/null 2>&1
 	MAIN
 		;;
 	"Download List")
