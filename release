@@ -1,6 +1,6 @@
 This file is used by the update script to check and make sure that the latest version of pat menu is installed on the system.
 
-release=0.54
+release=0.55
 
 
 Changelog
@@ -67,4 +67,13 @@ Changelog
      create changeconf script to deal with multiple config files
      add menu-mange script for pat menu management
      update setup script to +x changeconf & menu-manage
+     bump version #
+0.55 add exit option to changeconf script
+     add symlink to setup for patmenu in /usr/local/bin
+     open pat inbox in browser when starting packet or ardop modems
+     change map viewer in findardop to variable	
+     fix map viewer error from showing in pat menu
+     update main menu with new manage pat menu feature
+     check autopat to make sure 20,30,40,80 is entered
+     provide exit from autopat
      bump version #
