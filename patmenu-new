@@ -10,6 +10,12 @@ PATAUTO () {
 	echo "Which band would you like to use?"
 	echo "20, 30, 40, or 80"
 	read BAND
+	if [ -z $BAND ]
+	then
+	echo "band cannot be blank"
+	sleep 2
+	PATAUTO
+	fi
 	if [ $BAND = "20" ] || [ $BAND = "30" ] || [ $BAND = "40" ] || [ $BAND = "80" ]
 	then
 	echo
@@ -21,33 +27,38 @@ PATAUTO () {
 	fi
 	echo "What is the max distance you wish to try?"
 	read MAX
+	if [ -z $MAX ]
+	then 
+	echo "max distance cannot be blank"
+	sleep 2
+	PATAUTO
+	fi
 	echo "What is the minimum distance you wish to try?"
 	read MIN
-	echo "You have chosen to use "$BAND"M with a minimum distance of "$MIN
-	echo "and a maximum distance of "$MAX
-	read -p "Is this correct? y/n/exit " ANS
-		if [ $ANS = "exit" ]
-		then 
-		MAINMENU
-		elif [ $ANS = "n" ]
-		then
-		PATAUTO
-		elif [ $ANS = "y" ]
-		then
-		echo "Please standby"
-			if [ -z $BAND ]
-			then
-			echo "band cannot be blank"
-			sleep 3
-			exit 0
-			elif [ -z $MAX ]
-			then 
-			echo "max distance cannot be blank"
-			exit 0
-			fi
-		fi
-	$HOME/patmenu/autopat $MAX $BAND $MIN
-	MAINMENU
+	if [ $MIN -gt $MAX ]
+	then
+	echo "Minimum distance can't be greater than maximum distance"
+	echo "Please try again"
+	sleep 2
+	PATAUTO
+	fi
+	echo "You have chosen to use "$BAND"M with a minimum distance of "$MIN"km"
+	echo "and a maximum distance of "$MAX"km"
+	read -p "Is this correct? y/n/exit :" ANS
+	case $ANS in  
+	  y|Y) echo "Please standby"
+			$HOME/patmenu/autopat $MAX $BAND $MIN 
+			MAINMENU
+			;; 
+	  n|N) PATAUTO 
+			;; 
+	  "exit") MAINMENU
+			;;
+	  *) echo "Invalid option. Try again"
+	     sleep 2 
+	     PATAUTO
+			;; 
+	esac
 }
 
 #catalog function
