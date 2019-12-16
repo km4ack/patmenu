@@ -14,7 +14,12 @@ echo
 ls $PATFILES*.bkup | awk -F'/' '{ print $5 }' | awk -F'.' '{ print $3 }'
 echo;echo;
 echo "Please enter full file name (example: 20191201-07:12)"
-read -p "of the one you wish to restore? " FILE
+echo "of the one you wish to restore"
+read -p "or 'exit' to cancel " FILE
+if [ $FILE = "exit" ]
+then
+exit 0
+fi
 echo;read -p "Restore "$FILE" ? y/n " ANS
 
 if [ $ANS = 'y' ] || [ $ANS = 'Y' ]
