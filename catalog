@@ -15,7 +15,7 @@ else
 fi
 
 #get callsign from pat config file
-CALLSIGN=$(cat $HOME/.wl2k/config.json | grep -m 1 mycall | sed 's/\"mycall\": \"//' | sed 's/\",//' | sed -e 's/^\s*//')
+CALLSIGN=$(cat $HOME/.wl2k/config.json | grep -m 1 mycall | sed 's/\"mycall\": \"//' | sed 's/\",//' | sed -e 's/^\s*//' | tr '[:lower:]' '[:upper:]')
 
 PS3='Please enter your choice: '
 
