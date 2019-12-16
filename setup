@@ -52,7 +52,7 @@ fi
 ln -sf $HOME/patmenu/patmenu-new $HOME/Desktop/Pat-Menu
 
 #create symlink for patmenu
-sudo ln -sf $HOME/patmenu/patmenu-new /usr/local/bin
+sudo ln -sf $HOME/patmenu/patmenu-new /usr/local/bin/patmenu
 
 
 #remove a few files
