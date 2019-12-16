@@ -1,6 +1,6 @@
 This file is used by the update script to check and make sure that the latest version of pat menu is installed on the system.
 
-release=0.55
+release=0.56
 
 
 Changelog
@@ -77,3 +77,14 @@ Changelog
      check autopat to make sure 20,30,40,80 is entered
      provide exit from autopat
      bump version #
+0.56 add min < max check in auto pat
+     add answer check at beginning of auto pat
+     rewrite patauto function in patmenu-new
+     check running modems & stop if needed when running autopat
+     add grid square check to getardoplist and warn if not set
+     fix symlink in setup script
+     add exit to restore config script
+     convert callsign to upper case in catalog script
+     bump verson #
+     
+     
