@@ -39,8 +39,8 @@ cat $TEMP1
 
 echo;echo;read -p "Which call would you like to add to your alias list? " CALL
 
-NAME=$(cat $TEMP1 | grep -i $CALL | awk '{ print $1 }')
-SC=$(cat $TEMP1 | grep -i $CALL | awk '{ print $11 }')
+NAME=$(cat $TEMP1 | grep -i $CALL | head -1 | awk '{ print $1 }')
+SC=$(cat $TEMP1 | grep -i $CALL | head -1 | awk '{ print $11 }')
 
 echo $NAME
 echo $SC
