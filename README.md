@@ -4,7 +4,7 @@ It will also aid in finding ARDOP stations to connect to and shut down the modem
 
 This is still considered BETA code. Things may or may not work for you. It has only been tested with the signalink and wolphilink sound card but should work with any USB sound card that uses VOX to trigger the radio.
 
-#Known Bugs BEWARE!!
+# Known Bugs BEWARE!!
 If multiple stations are available when trying to add a packet station to your alias list, selecting any of the stations will corrupt the pat config file. https://github.com/km4ack/patmenu/issues/23
 
 # Videos
