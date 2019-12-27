@@ -22,7 +22,7 @@ MAP=usa
 #MAP=world
 
 #Use rig control? yes or no NOTE: autopat will not work without rig control
-RIGCONTROL=yes
+RIGCONTROL=no
 
 #enter your rig control command below. DO NOT enter mode
 #or frequency commands as these are handled by the script
