@@ -37,13 +37,18 @@ done < $TEMP
 clear;echo;echo
 cat $TEMP1
 
-echo;echo;read -p "Which call would you like to add to your alias list? " CALL
+echo;echo;read -p "Enter call sign or frequency to add to your alias list? " CALL
 
 NAME=$(cat $TEMP1 | grep -i $CALL | head -1 | awk '{ print $1 }')
 SC=$(cat $TEMP1 | grep -i $CALL | head -1 | awk '{ print $11 }')
 
-echo $NAME
-echo $SC
+if [ -z "$NAME" ]
+then
+echo "Station not found"
+echo "Please try again"
+sleep 2
+exit 0
+fi
 
 	if [ $RIGCONTROL = 'yes' ]
 	then
@@ -57,7 +62,8 @@ jq '.connect_aliases += {'\""$NAME-Packet"\"' : '\"$SC\"'}' $PATCONFIG > $TEMP2
 cp $TEMP2 $PATCONFIG
 sudo killall pat
 sudo systemctl start pat@$WHO
-echo "done"
+echo "Station Added"
+sleep 2
 
 rm $TEMP $TEMP1 $TEMP2
 
