@@ -1,3 +1,6 @@
+#change next line to your call sign
+MYCALLSIGN=N0CALL
+
 #enter your piardopc command on the line below
 #Be sure to not delete the quotation marks.
 ARDOP="$HOME/ardop/./piardopc 8515 plughw:1,0 plughw:1,0"
