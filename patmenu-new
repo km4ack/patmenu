@@ -3,6 +3,15 @@
 #20191115 km4ack
 
 PS3='Please enter your choice: '
+source $HOME/patmenu/config
+if [ $MYCALLSIGN = "N0CALL" ]
+then
+echo "Please see the config file before running Pat Menu"
+echo "The config file is found in the ~/patmenu directory"
+echo "See this video for more information https://youtu.be/unal5dCKGXk"
+sleep 10
+exit 0
+fi
 
 PATAUTO () {
 	
