@@ -1,6 +1,6 @@
 This file is used by the update script to check and make sure that the latest version of pat menu is installed on the system.
 
-release=0.57
+release=0.58
 
 
 Changelog
@@ -88,5 +88,10 @@ Changelog
      bump version #
 0.57 fix bug in add packet script
      bump version #
+0.58 add callsign to config file (existing users will not see this)
+     add config check when menu starts. exit if config not modded
+     rig control set to no by default in config file
+     bump version #
+     
      
      
