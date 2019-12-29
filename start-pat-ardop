@@ -66,6 +66,7 @@ $ARDOPGUI </dev/null &>/dev/null &
 
 #start modem
 $ARDOP </dev/null &>/dev/null &
+sleep 2
 
 
 #verify that piardopc is running
