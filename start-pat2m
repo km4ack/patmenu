@@ -77,18 +77,47 @@ WHO=$(whoami)
 SETRIG
 fi
 
+#Buster work around
+#check for buster
+BUSTER=$(cat /etc/os-release | grep -i buster)
+if [ -z "$BUSTER" ]
+then
+#start direwolf
 /usr/local/bin/$DIREWOLF </dev/null &>/dev/null &
+#disown -a
+else
+/usr/local/bin/direwolf -p > $TEMP &
+sleep 1
+sudo killall direwolf
+LINK=$(cat $TEMP | grep symlink | awk '{ print $5 }') 
+rm $TEMP
+/usr/local/bin/$DIREWOLF </dev/null &>/dev/null &
+fi
+
+#/usr/local/bin/$DIREWOLF </dev/null &>/dev/null &
 #find what pt direwolf created (/dev/pts/X)
-LINK=$(ls -l /tmp/kisstnc | awk '{print $NF}')
+#LINK=$(ls -l /tmp/kisstnc | awk '{print $NF}')
 
 echo "Almost Done"
 #give direwolf time to start
 sleep 5
 
+if [ -z "$BUSTER" ]
+then
+#start kissattach
+$KISS $AXP
+sudo kissparms -c 1 -p wl2k
+echo;echo;echo
+else
+
 sudo /usr/sbin/kissattach $LINK $AXP
 sudo kissparms -c 1 -p wl2k
 echo;echo;echo
+fi
 
+#sudo /usr/sbin/kissattach $LINK $AXP
+#sudo kissparms -c 1 -p wl2k
+#echo;echo;echo
 
 #verify direwolf has started
 PIDDW=$(pidof direwolf)
@@ -104,7 +133,7 @@ fi
 #open pat inbox in browser
 export DISPLAY=:0 && chromium-browser --app=http://127.0.0.1:$PORT > /dev/null 2>&1 &
 
-exit 0
+#exit 0
 
 
 
