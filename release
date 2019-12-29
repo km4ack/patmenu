@@ -1,6 +1,6 @@
 This file is used by the update script to check and make sure that the latest version of pat menu is installed on the system.
 
-release=0.59
+release=0.60
 
 
 Changelog
@@ -95,6 +95,8 @@ Changelog
 0.59 improve how direwolf starts on buster
      add slight delay after starting ardop mode 
      bump version #
+0.60 revert start-pat2m due to critical flaw
+     bump version number
      
      
      
