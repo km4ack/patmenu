@@ -1,3 +1,13 @@
+#20191230 KM4ACK
+
+#This setup is designed to work with a VOX soundcard (ie Signalink)
+#If using a VOX soundcard or radio with a VOX soundcard built in
+#simply edit the call sign below to yours and change 
+#RIGCONTROL=no to RIGCONTROL=yes below.
+#Now test the setup. Be sure you have FLRIG open
+#and configured for your radio.
+
+
 #change next line to your call sign
 MYCALLSIGN=N0CALL
 
@@ -28,7 +38,7 @@ RIGCONTROL=no
 #or frequency commands as these are handled by the script
 #Be sure to not delete the quotation marks. DO NOT use
 #"rigctld" here. Use "rigctl"
-#example of using Yaesu 857D
+#example for Yaesu 857D
 #RIG="/usr/local/bin/rigctl -m 122 -r /dev/ttyUSB0 -s 4800"
 
 #Pass rig control commands through FLRIG (default)
@@ -47,5 +57,19 @@ PORT=8080
 #Path to log file
 LOG=$HOME/Documents/mylog.txt
 
-#set to yes for tri-mode setup
+#Below this line is only useful to AMRRON operators. Others shouldn't edit below this line.
+
+#set next line to yes for tri-mode setup
 AMRRON=no
+
+#uncomment line below by removing the "#" to enable trimode
+#ARDOP="$HOME/ardop/./piardopc 8515 pulse pulse"
+
+
+
+
+
+
+
+
+
