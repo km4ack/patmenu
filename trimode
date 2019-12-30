@@ -1,0 +1,15 @@
+#!/bin/bash
+
+#script to enable trimode in direwolf
+#for amrron operations
+#20191230 km4ack
+
+
+D=$(cat $HOME/direwolf.conf | grep -E "ADEVICE +plughw:1,0" | awk '{ print $0 }')
+
+sed -i "s/$D/ADEVICE pulse/" $HOME/direwolf.conf
+
+echo "Done. Direwolf has been changed for tri-mode ops"
+
+exit 0
+
