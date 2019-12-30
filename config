@@ -28,7 +28,11 @@ RIGCONTROL=no
 #or frequency commands as these are handled by the script
 #Be sure to not delete the quotation marks. DO NOT use
 #"rigctld" here. Use "rigctl"
-RIG="/usr/local/bin/rigctl -m 122 -r /dev/ttyUSB0 -s 4800"
+#example of using Yaesu 857D
+#RIG="/usr/local/bin/rigctl -m 122 -r /dev/ttyUSB0 -s 4800"
+
+#Pass rig control commands through FLRIG (default)
+RIG="/usr/local/bin/rigctl -m 4"
 
 #Mode used for HF digital comms on your radio
 MODEHF=USB
@@ -42,3 +46,6 @@ PORT=8080
 
 #Path to log file
 LOG=$HOME/Documents/mylog.txt
+
+#set to yes for tri-mode setup
+AMRRON=no
