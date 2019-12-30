@@ -1,6 +1,6 @@
 This file is used by the update script to check and make sure that the latest version of pat menu is installed on the system.
 
-release=0.60
+release=0.61
 
 
 Changelog
@@ -97,6 +97,10 @@ Changelog
      bump version #
 0.60 revert start-pat2m due to critical flaw
      bump version number
+0.61 update FLRIG rigctl in config (existing users will not see this)
+     add tri-mode variable to config (existing users will not see this)
+     bump version number
+     
      
      
      
