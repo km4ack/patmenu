@@ -19,7 +19,7 @@ D=$(cat $HOME/direwolf.conf | grep -E "ADEVICE +plughw:1,0" | awk '{ print $0 }'
 
 sed -i "s/$D/ADEVICE pulse/" $HOME/direwolf.conf
 
-echo '"$HOME/ardop/./piardopc 8515 pulse pulse"' >> $HOME/patmenu/config
+echo 'ARDOP="$HOME/ardop/./piardopc 8515 pulse pulse"' >> $HOME/patmenu/config
 
 echo "Tri Mode Ops enabled. Use Pat Menu to"
 echo "start the ARDOP & Packet modems"
