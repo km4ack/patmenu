@@ -4,12 +4,25 @@
 #for amrron operations
 #20191230 km4ack
 
+source $HOME/patmenu/config
+
+if [ $AMRRON = "no" ]
+then
+echo "Tri mode disabled in the Pat Menu Config File"
+echo "~/patmenu/config Set AMRRON=yes and try this"
+echo "script again. 73, de KM4ACK"
+exit 0
+fi
 
 D=$(cat $HOME/direwolf.conf | grep -E "ADEVICE +plughw:1,0" | awk '{ print $0 }')
 
 sed -i "s/$D/ADEVICE pulse/" $HOME/direwolf.conf
 
-echo "Done. Direwolf has been changed for tri-mode ops"
+echo '"$HOME/ardop/./piardopc 8515 pulse pulse"' >> $HOME/patmenu/config
+
+echo "Tri Mode Ops enabled. Use Pat Menu to"
+echo "start the ARDOP & Packet modems"
+echo "You can now start both modems at the same time"
 
 exit 0
 
