@@ -193,9 +193,9 @@ done
 #Postitions Request Function
 POSITIONS () {
 clear;echo;echo;echo
-echo "Position Report Request"
+echo "Position Reports"
 echo
-MENU=("Single Station" "All Nearby" "Main Menu")
+MENU=("Single Station" "All Nearby" "Post Position" "Main Menu")
 select ITEM in "${MENU[@]}"
 do
     case $ITEM in
@@ -213,6 +213,14 @@ do
 	SUBJECT="REQUEST"
 	BODY="WL2K_NEARBY"
 	COMPOSE
+        "Post Position")
+	echo;echo
+	echo "This will post your position & comment via Winlink"
+	echo "This only works if you have a GPS connected"
+	read -p "What comment would you like to add to your position " COMMENT
+	pat position -c "$COMMENT"
+	sleep 3
+	POSITIONS
             ;;
         "Main Menu")
             MAIN-MENU
