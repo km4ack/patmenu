@@ -213,6 +213,7 @@ do
 	SUBJECT="REQUEST"
 	BODY="WL2K_NEARBY"
 	COMPOSE
+            ;;
         "Post Position")
 	echo;echo
 	echo "This will post your position & comment via Winlink"
