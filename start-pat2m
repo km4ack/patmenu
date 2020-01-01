@@ -8,6 +8,9 @@ clear
 source $HOME/patmenu/config
 TEMP=$HOME/patmenu/temp
 
+if [ $AMRRON = "no" ]
+then
+
 #check if piardopc is running
 PIDDW=$(pidof piardopc)
 if [ -z "$PIDDW" ]
@@ -21,10 +24,15 @@ sleep 5
 exit 0
 fi
 
+fi
+
 echo;echo;
 echo "Please standby while direwolf starts"
 echo;echo
+if [ $AMRRON = "no" ]
+then
 sudo killall direwolf kissattach > /dev/null 2>&1
+fi
 sleep 1
 
 #Set Mode
