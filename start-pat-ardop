@@ -6,6 +6,8 @@
 
 source $HOME/patmenu/config
 
+if [ $AMRRON = "no" ]
+then
 #check if direwolf is running
 PIDDW=$(pidof direwolf)
 if [ -z "$PIDDW" ]
@@ -17,6 +19,8 @@ echo "It looks like the 2M/440 Modem is running"
 echo "Stop all modems and try again."
 sleep 5
 exit 0
+fi
+
 fi
 
 clear;echo;echo;echo
