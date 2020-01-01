@@ -1,6 +1,6 @@
 This file is used by the update script to check and make sure that the latest version of pat menu is installed on the system.
 
-release=0.62
+release=0.63
 
 
 Changelog
@@ -105,6 +105,8 @@ Changelog
      add trimode script for amrron operators
      revise trimode in config
      bump version # 
+0.63 fix catalog typo that caused crash
+     bump version #
 
      
      
