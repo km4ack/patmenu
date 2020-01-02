@@ -260,11 +260,91 @@ do
 done
 }
 
+GRIB () {
+QUESTION () {
+clear;echo;echo;echo
+echo "This section is experimental!! It may not work correctly."
+echo "GRIB file request is for the next 72 hours"
+echo
+read -p "How many degrees should we request data for? 2, 6, 10, or exit " ANS
+
+if [ $ANS = "10" ] || [ $ANS = "6" ] || [ $ANS = "2" ] || [ $ANS = "exit" ]
+then
+echo;echo "processing the data"
+if [ $ANS = "10" ]
+then
+AREA=5
+elif [ $ANS = "6" ]
+then
+AREA=3
+elif [ $ANS = "2" ]
+then
+AREA=1
+elif [ $ANS = "exit" ]
+then
+MAIN-MENU
+fi
+else 
+echo;echo "Sorry, that's not an option. Try again."
+sleep 2
+QUESTION
+fi
+
+GPS=$(gpspipe -r -n 10 | grep G\.GGA)
+
+LAT=$(echo $GPS | awk -F "," '{printf "%.0f \n", $3 }' | cut -c1-2)
+LATD=$(echo $GPS | awk -F "," '{print $4}')
+LON=$(echo $GPS | awk -F "," '{printf "%.0f \n", $5 }' | cut -c1-2)
+LOND=$(echo $GPS | awk -F "," '{print $6}')
+
+#do some math
+let NEWLATADD=$LAT+$AREA
+let NEWLONADD=$LON+$AREA
+let NEWLATSUB=$LAT-$AREA
+let NEWLONSUB=$LON-$AREA
+
+GRIBFILE=$HOME/patmenu/gribtemp
+GRIBDATA () {
+yad --height=600 --width=400 --center --list --checklist --column=Request --column=Product --separator="," --text "Select the data to request." --title="GRIB DATA REQUEST" --button="Exit:1" --button="Request Selected:2" < $HOME/patmenu/griblist > $GRIBFILE
+
+BUTTON=$?
+
+if [ $BUTTON = "252" ]
+then
+exit 0
+elif [ $BUTTON = "1" ]
+then
+exit 0
+fi
+
+#echo "button = "$BUTTON
+
+};export -f GRIBDATA
+
+GRIBDATA
+
+sed -i 's/TRUE,//' $GRIBFILE
+
+var=$(cat $GRIBFILE)
+var1=$(echo $var | sed 's/ //g' | sed 's/,*$//')
+rm $GRIBFILE
+
+#example of correct format
+# send gfs:40N,60N,140W,120W|2,2|24,48,72|PRESS,WIND
+
+TO=query@saildocs.com
+SUBJECT=REQUEST
+BODY=$(echo "send gfs:"$NEWLATSUB$LATD","$NEWLATADD$LATD","$NEWLONADD$LOND","$NEWLONSUB$LOND"|2,2|24,48,72|"$var1)
+COMPOSE
+}
+QUESTION
+}
+
 MAIN-MENU () {
 clear;echo;echo;echo
 echo "Winlink Catalog Script by KM4ACK"
 echo
-MENU=("Gateway List" "Weather" "Position Reports" "Propagation" "News" "Exit")
+MENU=("Gateway List" "Weather" "Position Reports" "Propagation" "News" "Grib Files" "Exit")
 select ITEM in "${MENU[@]}"
 do
     case $ITEM in
@@ -282,6 +362,9 @@ do
 		;;
         "News")
 		NEWS
+		;;
+        "Grib Files")
+		GRIB
 		;;
 	"Exit")
 		exit 0
