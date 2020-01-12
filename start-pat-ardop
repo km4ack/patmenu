@@ -6,7 +6,7 @@
 
 source $HOME/patmenu/config
 
-if [ $AMRRON = "no" ]
+if [ $AMRRON = "no" ] > /dev/null 2>&1
 then
 #check if direwolf is running
 PIDDW=$(pidof direwolf)
