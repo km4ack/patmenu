@@ -6,6 +6,19 @@
 #20191230 km4ack
 
 source $HOME/patmenu/config
+CHECK=$(ls ~/.config | grep KM4ACK)
+
+if [ -z "$CHECK" ]
+then
+echo;echo
+echo "This system doesn't appear to be built with"
+echo "the KM4ACK build-a-pi script. Running this"
+echo "script will probably destroy the configurations"
+echo "on this machine. Proceed at your OWN RISK"
+echo "YOU HAVE BEEN WARNED!!"
+echo "Press ctrl+c now to exit or"
+read -n 1 -s -r -p "Press any key to continue"
+fi
 
 if [ $AMRRON = "no" ]
 then
@@ -14,6 +27,14 @@ echo "~/patmenu/config Set AMRRON=yes and try this"
 echo "script again. 73, de KM4ACK"
 exit 0
 fi
+
+	if ! hash pulseaudio 2>/dev/null; then
+	sudo apt install -y pulseaudio
+	fi
+
+	if ! hash pavucontrol 2>/dev/null; then
+	sudo apt install -y pavucontrol
+	fi
 
 D=$(cat $HOME/direwolf.conf | grep -E "ADEVICE +plughw:1,0" | awk '{ print $0 }')
 
