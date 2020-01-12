@@ -8,7 +8,7 @@ clear
 source $HOME/patmenu/config
 TEMP=$HOME/patmenu/temp
 
-if [ $AMRRON = "no" ]
+if [ $AMRRON = "no" ] > /dev/null 2>&1
 then
 
 #check if piardopc is running
@@ -29,7 +29,7 @@ fi
 echo;echo;
 echo "Please standby while direwolf starts"
 echo;echo
-if [ $AMRRON = "no" ]
+if [ $AMRRON = "no" ] > /dev/null 2>&1
 then
 sudo killall direwolf kissattach > /dev/null 2>&1
 fi
