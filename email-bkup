@@ -1,0 +1,35 @@
+#!/bin/bash
+
+#winlink email backup
+#20200120 km4ack
+
+WHO=$(whoami)
+CALL=$(cat $HOME/.wl2k/config.json | grep mycall | head -1 | sed 's/"mycall"://' | sed 's/"//g' | sed 's/,//')
+BKUPTIME=$(date +%Y%d%m-%H%M)
+
+clear;echo;echo;
+echo "Please insert external disk/thumb drive now"
+read -n 1 -s -r -p "Press any key to continue"
+
+AVAILDISK=$(ls /media/$WHO/)
+
+clear;echo;echo;
+echo "Disk(s) Available";echo
+echo $AVAILDISK
+echo;echo
+read -p "Enter first 3 characters of disk you wish to use? " ANS
+BKUPTO=$(echo $AVAILDISK | grep -i $ANS)
+echo;echo;
+echo "Use the following drive?"
+echo $BKUPTO 
+read -p "Is this correct? y/n " ANS1
+if [ $ANS1 = 'y' ]
+then
+echo "Backing up email....please standby"
+mkdir -p /media/$WHO/$BKUPTO/$BKUPTIME
+cp -r $HOME/.wl2k/mailbox/$CALL /media/$WHO/$BKUPTO/$BKUPTIME > /dev/null 2>&1
+echo "Backup Complete"
+sleep 2
+fi
+
+exit 0
