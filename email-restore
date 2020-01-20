@@ -1,0 +1,47 @@
+#!/bin/bash
+
+#restore winlink email
+#20200120 km4ack
+
+WHO=$(whoami)
+CALL=$(cat $HOME/.wl2k/config.json | grep mycall | head -1 | sed 's/"mycall"://' | sed 's/"//g' | sed 's/,//' | tr -d ' ')
+echo $CALL
+#exit 0
+
+DRIVES=$(ls /media/$WHO/)
+
+clear;echo;echo
+echo $DRIVES
+echo;echo
+read -p "First 3 characters of drive that contains backup? " ANS
+
+BKUPDRIVE=$(echo $DRIVES | grep -i $ANS)
+
+echo;echo
+echo "You have chosen " $BKUPDRIVE
+read -p "Is this correct? y/n " ANS1
+
+if [ $ANS1 = 'y' ]
+then
+echo;echo
+echo "-----LIST OF FOLDERS-----"
+ls /media/$WHO/$BKUPDRIVE
+echo;echo
+read -p "Name of folder containing backup? " ANS2
+BKUPFOLDER="/media/$WHO/$BKUPDRIVE/$ANS2"
+	if [ -d "$BKUPFOLDER" ]
+	then
+	echo;echo
+	echo "restoring emails"
+	cp $BKUPFOLDER/mailbox/$CALL/out/* "$HOME/.wl2k/mailbox/$CALL/out"
+	cp $BKUPFOLDER/mailbox/$CALL/in/* "$HOME/.wl2k/mailbox/$CALL/in"
+	cp $BKUPFOLDER/mailbox/$CALL/sent/* "$HOME/.wl2k/mailbox/$CALL/sent"
+	cp $BKUPFOLDER/mailbox/$CALL/archive/* "$HOME/.wl2k/mailbox/$CALL/archive"
+	echo "restore complete"
+	sleep 2
+	else
+	echo "Folder not found"
+	sleep 2	
+	exit 0
+	fi
+fi
