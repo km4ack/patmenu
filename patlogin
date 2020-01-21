@@ -42,7 +42,7 @@ echo "Your grid is:$GRID"
 echo
 echo "Is this correct? y or n"
 read ANSWER
-if [ $ANSWER == 'y' ]
+if [ $ANSWER == 'y' ] || [ $ANSWER == 'Y' ]
 then
 #set callsign
 sed -i "s/\"mycall\": \".*\",/\"mycall\": \"$CALLSIGN\",/" $FIG
