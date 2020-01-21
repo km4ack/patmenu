@@ -119,6 +119,7 @@ Changelog
      add email backup/restore to pat manage
      fix issue 25 https://github.com/km4ack/patmenu/issues/25
      move GRIB files to weather section https://github.com/km4ack/patmenu/issues/26
+     add email-bkup & email-restore +x to setup file
      bump version #
      
      
