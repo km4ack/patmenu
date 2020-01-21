@@ -141,7 +141,7 @@ WEATHER () {
 clear;echo;echo;echo
 echo "Weather Report Request"
 echo
-MENU=("GPS Weather" "City Weather" "Main Menu")
+MENU=("GPS Weather" "City Weather" "GRIB Files" "Main Menu")
 select ITEM in "${MENU[@]}"
 do
     case $ITEM in
@@ -181,6 +181,9 @@ do
 	SUBJECT="REQUEST"
 	BODY=$CITY
 	COMPOSE
+            ;;
+        "GRIB Files")
+            GRIB
             ;;
         "Main Menu")
             MAIN-MENU
@@ -344,7 +347,7 @@ MAIN-MENU () {
 clear;echo;echo;echo
 echo "Winlink Catalog Script by KM4ACK"
 echo
-MENU=("Gateway List" "Weather" "Position Reports" "Propagation" "News" "Grib Files" "Exit")
+MENU=("Gateway List" "Weather" "Position Reports" "Propagation" "News" "Exit")
 select ITEM in "${MENU[@]}"
 do
     case $ITEM in
@@ -362,9 +365,6 @@ do
 		;;
         "News")
 		NEWS
-		;;
-        "Grib Files")
-		GRIB
 		;;
 	"Exit")
 		exit 0
