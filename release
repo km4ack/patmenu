@@ -1,6 +1,6 @@
 This file is used by the update script to check and make sure that the latest version of pat menu is installed on the system.
 
-release=0.66
+release=0.67
 
 
 Changelog
@@ -114,6 +114,11 @@ Changelog
 0.66 stop modem starts from puking errors if var not found
      add extra check before trimode is run
      add pulseaudio/pavucontrol install check to trimode
+     bump version #
+0.67 write email backup/restore scripts
+     add email backup/restore to pat manage
+     fix issue 25 https://github.com/km4ack/patmenu/issues/25
+     move GRIB files to weather section https://github.com/km4ack/patmenu/issues/26
      bump version #
      
      
