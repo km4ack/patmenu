@@ -1,3 +1,17 @@
+#20191230 KM4ACK
+
+#This setup is designed to work with a VOX soundcard (ie Signalink)
+#If using a VOX soundcard or radio with a VOX soundcard built in
+#simply edit the call sign below to yours and change 
+#RIGCONTROL=no to RIGCONTROL=yes below.
+#Now test the setup. Be sure you have FLRIG open
+#and configured for your radio.
+#AMRRON operators see bottom of this file for trimode.
+
+
+#change next line to your call sign
+MYCALLSIGN=N0CALL
+
 #enter your piardopc command on the line below
 #Be sure to not delete the quotation marks.
 ARDOP="$HOME/ardop/./piardopc 8515 plughw:1,0 plughw:1,0"
@@ -18,14 +32,19 @@ AXP=wl2k
 MAP=usa
 #MAP=world
 
-#Use rig control? yes or no NOTE: autopat will not work without rig control
-RIGCONTROL=yes
+#Use rig control? yes or no 
+#NOTE: autopat will not work without rig control
+RIGCONTROL=no
 
 #enter your rig control command below. DO NOT enter mode
 #or frequency commands as these are handled by the script
 #Be sure to not delete the quotation marks. DO NOT use
 #"rigctld" here. Use "rigctl"
-RIG="/usr/local/bin/rigctl -m 122 -r /dev/ttyUSB0 -s 4800"
+#example for Yaesu 857D
+#RIG="/usr/local/bin/rigctl -m 122 -r /dev/ttyUSB0 -s 4800"
+
+#Pass rig control commands through FLRIG (default)
+RIG="/usr/local/bin/rigctl -m 4"
 
 #Mode used for HF digital comms on your radio
 MODEHF=USB
@@ -39,3 +58,23 @@ PORT=8080
 
 #Path to log file
 LOG=$HOME/Documents/mylog.txt
+
+#Below this line is only useful to AMRRON operators. Others shouldn't edit below this line.
+#NOTE:The amrron portion of this script is still experimental.
+
+#set next line to yes for tri-mode setup
+AMRRON=no
+
+#amrron operaters should save/exit this config file after setting above to yes and then run
+# bash ~/patmenu/trimode 
+#to enable trimode ops
+
+
+
+
+
+
+
+
+
+
