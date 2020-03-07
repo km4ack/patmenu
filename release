@@ -1,10 +1,12 @@
 This file is used by the update script to check and make sure that the latest version of pat menu is installed on the system.
 
-release=0.68
+release=0.69
 
 
 Changelog
 
+0.69	fix issue 33 https://github.com/km4ack/patmenu/issues/33
+	bump version #
 0.68 	remove bug warning from README.md
 	reorder release file so latest revs at top
 	fix release display in update script
