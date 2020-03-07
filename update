@@ -24,7 +24,7 @@ clear
 echo "Pat-Menu needs to be updated"
 echo
 echo "Here's the change log"
-cat latest | head -n 17 | tail -n +8
+cat $HOME/patmenu/latest | head -n 17 | tail -n +8
 echo;echo
 echo "Current installed version is "$CURRENT
 echo
