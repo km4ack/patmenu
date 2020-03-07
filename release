@@ -1,10 +1,14 @@
 This file is used by the update script to check and make sure that the latest version of pat menu is installed on the system.
 
-release=0.69
+release=0.70
 
 
 Changelog
 
+0.70	add version number to main menu
+	create backup of start-pat2m			#######REMOVE IN FUTURE#######
+	fix issue 24 https://github.com/km4ack/patmenu/issues/24
+	bum version #
 0.69	fix issue 33 https://github.com/km4ack/patmenu/issues/33
 	bump version #
 0.68 	remove bug warning from README.md
