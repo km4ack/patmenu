@@ -4,6 +4,7 @@
 
 PS3='Please enter your choice: '
 source $HOME/patmenu/config
+VER=$(cat $HOME/patmenu/release | grep release= | sed 's/release=//')
 if [ $MYCALLSIGN = "N0CALL" ]
 then
 echo "Please see the config file before running Pat Menu"
@@ -86,7 +87,7 @@ FINDARDOP () {
 
 MAINMENU () {
 clear;echo;echo;echo
-echo "Pat Menu by KM4ACK"
+echo "Pat Menu v"$VER" by KM4ACK"
 echo
 options=("Manage Pat" "Start ARDOP" "Start Packet" "Find Ardop" "Pat Auto Connect" "Pat Catalog" "Stop Modems" "Manage Pat Menu" "Exit")
 select opt in "${options[@]}"
