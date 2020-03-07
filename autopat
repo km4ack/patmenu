@@ -19,7 +19,7 @@ if [ $AMRRON = "no" ]
 then
 
 DIRE=$(pidof direwolf)
-if [ -z "DIRE" ]
+if [ -z "$DIRE" ]
 then
 echo
 else
