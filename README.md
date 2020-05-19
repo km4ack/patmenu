@@ -1,8 +1,5 @@
 # Pat-Menu
-Pat Menu is an easy to use menu system for Pat Winlink. It is designed to make it easier to get all of the needed componets loaded and ready to make a connection using Pat.
-It will also aid in finding ARDOP stations to connect to and shut down the modems once you wrap up.
-
-This is still considered BETA code. Things may or may not work for you. It has only been tested with the signalink and wolphilink sound card but should work with any USB sound card that uses VOX to trigger the radio.
+As of 19May2020 this code will no longer supported. End of life. See the replacement, Pat Menu 2. https://github.com/km4ack/patmenu2
 
 # Videos
 [![IMAGE ALT TEXT](http://img.youtube.com/vi/xXJsJKgU-mc/0.jpg)](http://www.youtube.com/watch?v=xXJsJKgU-mc "Pat Menu Overview")
